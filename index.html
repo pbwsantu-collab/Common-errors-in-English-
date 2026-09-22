@@ -1,0 +1,1418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Common Errors in English — Study &amp; Exam App</title>
+<meta name="theme-color" content="#2b3350">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href='data:application/manifest+json,{"name":"Common%20Errors%20in%20English","short_name":"GrammarFix","start_url":".","display":"standalone","background_color":"%23EFEAE0","theme_color":"%232b3350","icons":[]}'>
+<style>
+:root{
+  --paper:#EFEAE0; --paper-2:#E4DDCC; --ink:#242A3B; --ink-soft:#565C72;
+  --rule:#C7BFA6; --ochre:#B4802E; --ochre-deep:#8C5F1E;
+  --right:#2F6B4F; --right-bg:#E4EFE7; --wrong:#A23B34; --wrong-bg:#F3E4E1;
+  --card:#F8F5EC; --shadow:rgba(36,42,59,.14);
+  --serif: "Iowan Old Style","Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+  --sans: "Avenir Next", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+:root:not([data-theme="light"]) {
+  @media (prefers-color-scheme: dark) {
+    --paper:#1B1E29; --paper-2:#20242F; --ink:#EDE7D8; --ink-soft:#B9B4A4;
+    --rule:#3B3F4E; --card:#22262F; --right-bg:#1E2A22; --wrong-bg:#2E1F1E; --shadow:rgba(0,0,0,.4);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#1B1E29; --paper-2:#20242F; --ink:#EDE7D8; --ink-soft:#B9B4A4;
+  --rule:#3B3F4E; --card:#22262F; --right-bg:#1E2A22; --wrong-bg:#2E1F1E; --shadow:rgba(0,0,0,.4);
+}
+*{box-sizing:border-box;}
+html,body{height:100%;}
+body{
+  margin:0; background:var(--paper); color:var(--ink); font-family:var(--sans);
+  padding-top:var(--safe-top); padding-bottom:var(--safe-bottom); -webkit-font-smoothing:antialiased;
+}
+::selection{ background:var(--ochre); color:#fff; }
+:lang(bn){ font-family: "Noto Sans Bengali", "Kohinoor Bangla", var(--sans); }
+:lang(hi){ font-family: "Noto Sans Devanagari", var(--sans); }
+
+header.topbar{ position:sticky; top:0; z-index:40; padding-top:var(--safe-top); background:var(--paper); border-bottom:1px solid var(--rule); }
+.topbar-inner{ display:flex; align-items:center; gap:.5rem; padding:.65rem .7rem; }
+.brand{ display:flex; align-items:center; gap:.5rem; flex:1; min-width:0; }
+.brand .mark{ font-family:var(--serif); font-weight:700; font-size:1.2rem; color:var(--ochre-deep); border:1.5px solid var(--ochre-deep); width:2rem; height:2rem; border-radius:3px; display:flex; align-items:center; justify-content:center; flex:none;}
+.brand .title{ font-family:var(--serif); font-size:.98rem; line-height:1.15; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+.brand .sub{ font-size:.65rem; color:var(--ink-soft); }
+button.iconbtn{ background:none; border:1px solid var(--rule); color:var(--ink); border-radius:3px; width:2rem; height:2rem; display:flex; align-items:center; justify-content:center; font-size:1rem; cursor:pointer; flex:none;}
+button.iconbtn:active{ background:var(--paper-2); }
+
+.langseg{ display:flex; border:1px solid var(--ochre-deep); border-radius:4px; overflow:hidden; flex:none; }
+.langseg button{ background:none; border:none; color:var(--ochre-deep); font-family:var(--sans); font-size:.68rem; font-weight:700; padding:.4rem .4rem; cursor:pointer; border-left:1px solid var(--ochre-deep); }
+.langseg button:first-child{ border-left:none; }
+.langseg button[aria-current="true"]{ background:var(--ochre-deep); color:#fff; }
+
+nav.modes{ display:flex; gap:0; border-top:1px solid var(--rule); overflow-x:auto; scrollbar-width:none; }
+nav.modes::-webkit-scrollbar{display:none;}
+nav.modes button{ flex:none; background:none; border:none; color:var(--ink-soft); font-family:var(--sans); font-size:.8rem; padding:.6rem .85rem; cursor:pointer; border-bottom:2.5px solid transparent; white-space:nowrap;}
+nav.modes button[aria-selected="true"]{ color:var(--ochre-deep); border-bottom-color:var(--ochre-deep); font-weight:700; }
+
+.scrim{ position:fixed; inset:0; background:rgba(0,0,0,.35); z-index:49; opacity:0; pointer-events:none; transition:opacity .2s;}
+.scrim.show{ opacity:1; pointer-events:auto; }
+.drawer{ position:fixed; top:0; left:0; bottom:0; width:82%; max-width:320px; background:var(--card); z-index:50; transform:translateX(-104%); transition:transform .25s ease; overflow-y:auto; padding-top:calc(var(--safe-top) + .6rem); padding-bottom:calc(var(--safe-bottom) + 1rem); border-right:1px solid var(--rule);}
+.drawer.open{ transform:translateX(0); }
+.drawer h3{ font-family:var(--serif); font-size:.92rem; margin:1rem 1rem .35rem; color:var(--ochre-deep); border-bottom:1px solid var(--rule); padding-bottom:.3rem;}
+.drawer .catbtn{ display:flex; justify-content:space-between; align-items:baseline; width:100%; text-align:left; background:none; border:none; padding:.55rem 1rem; font-family:var(--sans); font-size:.86rem; color:var(--ink); cursor:pointer; border-bottom:1px solid var(--paper-2);}
+.drawer .catbtn small{ color:var(--ink-soft); font-size:.7rem;}
+.drawer .catbtn[data-active="true"]{ background:var(--paper-2); font-weight:700; color:var(--ochre-deep); }
+.drawer-close{ display:flex; justify-content:flex-end; padding:0 .8rem;}
+
+main{ max-width:760px; margin:0 auto; padding:1rem .9rem 3rem; }
+.hero{ padding:1.1rem 0 1.3rem; border-bottom:1px solid var(--rule); margin-bottom:1.1rem; }
+.hero h1{ font-family:var(--serif); font-size:1.45rem; margin:.1rem 0 .3rem; line-height:1.3;}
+.hero p{ margin:.2rem 0; color:var(--ink-soft); font-size:.9rem; line-height:1.55;}
+.hero .stats{ display:flex; gap:1.1rem; margin-top:.8rem; flex-wrap:wrap;}
+.hero .stat b{ font-family:var(--serif); font-size:1.2rem; color:var(--ochre-deep); display:block;}
+.hero .stat span{ font-size:.66rem; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.03em;}
+
+.catgrid{ display:grid; grid-template-columns:1fr; gap:.6rem; }
+.catcard{ background:var(--card); border:1px solid var(--rule); border-radius:4px; padding:.8rem .95rem; cursor:pointer; text-align:left; font-family:var(--sans); color:var(--ink);}
+.catcard .num{ font-family:var(--serif); color:var(--ochre-deep); font-size:.76rem; }
+.catcard h4{ margin:.15rem 0 .2rem; font-family:var(--serif); font-size:1rem; font-weight:600;}
+.catcard p{ margin:0; font-size:.8rem; color:var(--ink-soft); line-height:1.45;}
+.catcard .count{ font-size:.68rem; color:var(--ochre-deep); margin-top:.35rem; display:block;}
+
+.backrow{ display:flex; align-items:center; gap:.5rem; margin-bottom:.7rem;}
+.backrow button{ background:none; border:none; color:var(--ochre-deep); font-size:.84rem; font-weight:700; cursor:pointer; padding:.2rem 0;}
+.section-title{ font-family:var(--serif); font-size:1.25rem; margin:.1rem 0 .15rem;}
+.section-sub{ color:var(--ink-soft); font-size:.84rem; margin-bottom:.6rem; line-height:1.5;}
+.notebox{ background:var(--right-bg); border-left:3px solid var(--right); padding:.6rem .8rem; border-radius:3px; font-size:.82rem; margin-bottom:.9rem; line-height:1.55;}
+.notebox b{ color:var(--right); display:block; margin-bottom:.25rem;}
+.pairlist{ display:flex; flex-direction:column; gap:.5rem; }
+.pair{ background:var(--card); border:1px solid var(--rule); border-radius:4px; padding:.65rem .8rem;}
+.pair .w, .pair .r{ display:flex; gap:.5rem; font-size:.89rem; line-height:1.4; }
+.pair .tag{ flex:none; font-size:.66rem; font-weight:700; letter-spacing:.03em; padding:.05rem .4rem; border-radius:2px; height:fit-content; margin-top:.1rem;}
+.pair .w .tag{ background:var(--wrong-bg); color:var(--wrong); }
+.pair .r .tag{ background:var(--right-bg); color:var(--right); }
+.pair .w{ color:var(--ink-soft); margin-bottom:.25rem;}
+.pair .r{ color:var(--ink); font-weight:600;}
+
+.qcard{ background:var(--card); border:1px solid var(--rule); border-radius:5px; padding:1rem; }
+.qmeta{ display:flex; justify-content:space-between; font-size:.7rem; color:var(--ink-soft); margin-bottom:.5rem;}
+.qprompt{ font-family:var(--serif); font-size:1.05rem; line-height:1.5; margin-bottom:.9rem;}
+.qoptions{ display:flex; flex-direction:column; gap:.5rem; }
+.qopt{ text-align:left; background:var(--paper); border:1px solid var(--rule); border-radius:4px; padding:.65rem .8rem; font-size:.9rem; cursor:pointer; color:var(--ink); font-family:var(--sans); line-height:1.4;}
+.qopt:active{ background:var(--paper-2); }
+.qopt.correct{ background:var(--right-bg); border-color:var(--right); color:var(--right); font-weight:700;}
+.qopt.wrong{ background:var(--wrong-bg); border-color:var(--wrong); color:var(--wrong); }
+.qopt[disabled]{ cursor:default; }
+.qfoot{ display:flex; justify-content:space-between; align-items:center; margin-top:1rem; gap:.6rem;}
+.btn{ background:var(--ochre-deep); color:#fff; border:none; border-radius:4px; padding:.6rem 1.1rem; font-size:.84rem; font-weight:700; cursor:pointer; font-family:var(--sans);}
+.btn.ghost{ background:none; color:var(--ochre-deep); border:1px solid var(--ochre-deep); }
+.btn[disabled]{ opacity:.4; }
+.progresswrap{ height:5px; background:var(--paper-2); border-radius:3px; overflow:hidden; margin-bottom:.9rem;}
+.progressbar{ height:100%; background:var(--ochre-deep); width:0%; transition:width .2s; }
+.explain{ margin-top:.8rem; font-size:.82rem; background:var(--paper); border-radius:4px; padding:.6rem .8rem; color:var(--ink-soft); display:none;}
+.explain.show{ display:block; }
+.explain b{ color:var(--ink); }
+
+.setup-grid{ display:flex; flex-direction:column; gap:.9rem; }
+.field label{ display:block; font-size:.78rem; color:var(--ink-soft); margin-bottom:.35rem;}
+.chiprow{ display:flex; flex-wrap:wrap; gap:.4rem; }
+.chip{ border:1px solid var(--rule); background:var(--card); border-radius:20px; padding:.35rem .8rem; font-size:.76rem; cursor:pointer; color:var(--ink);}
+.chip[data-active="true"]{ background:var(--ochre-deep); border-color:var(--ochre-deep); color:#fff; }
+input[type=number], select{ background:var(--card); border:1px solid var(--rule); border-radius:4px; padding:.5rem .6rem; color:var(--ink); font-family:var(--sans); font-size:.88rem; width:100%;}
+
+.resultbox{ text-align:center; padding:1.4rem .8rem; }
+.resultbox .score{ font-family:var(--serif); font-size:2.9rem; color:var(--ochre-deep); }
+.resultbox .label{ color:var(--ink-soft); font-size:.84rem; margin-bottom:1rem;}
+.reviewlist{ text-align:left; display:flex; flex-direction:column; gap:.55rem; margin-top:1rem;}
+.reviewlist>b{ display:block; margin-bottom:.2rem; }
+.reviewitem{ border:1px solid var(--rule); border-radius:4px; padding:.6rem .75rem; font-size:.84rem; background:var(--card);}
+.reviewitem.bad{ border-left:3px solid var(--wrong); }
+.reviewitem.good{ border-left:3px solid var(--right); }
+
+.hidden{ display:none !important; }
+footer.credit{ text-align:center; color:var(--ink-soft); font-size:.68rem; padding:1.5rem 1rem calc(1.5rem + var(--safe-bottom)); line-height:1.5;}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <button class="iconbtn" id="menuBtn" aria-label="Menu">☰</button>
+    <div class="brand">
+      <span class="mark">Eng</span>
+      <div>
+        <div class="title" id="brandTitle">Common Errors in English</div>
+        <div class="sub" id="brandSub">Study · Quiz · Exam</div>
+      </div>
+    </div>
+    <div class="langseg" id="langSeg">
+      <button data-l="en">EN</button>
+      <button data-l="hi">हिं</button>
+      <button data-l="bn">বাং</button>
+    </div>
+    <button class="iconbtn" id="themeBtn" aria-label="Theme">◐</button>
+  </div>
+  <nav class="modes" id="modeNav"></nav>
+</header>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer">
+  <div class="drawer-close"><button class="iconbtn" id="drawerClose">✕</button></div>
+  <h3 id="drawerHeading">Jump to a rule category</h3>
+  <div id="drawerList"></div>
+</aside>
+
+<main id="app"></main>
+
+<footer class="credit" id="footerCredit"></footer>
+
+<script>
+/* ===================================================================
+   i18n helper — every UI string is {en, hi, bn}; t() returns current
+   =================================================================== */
+const state = { lang:"en", mode:"home", currentCat:null,
+  quiz:{queue:[], pos:0, score:0, wrongLog:[]},
+  exam:{queue:[], pos:0, score:0, wrongLog:[], timeLeft:0, timer:null, secsPer:45, started:false}
+};
+function t(o){ if(typeof o === "string") return o; return o[state.lang] || o.en || ""; }
+function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;"); }
+
+const UI = {
+  brandSub: {en:"Study · Quiz · Exam", hi:"अध्ययन · प्रश्नोत्तरी · परीक्षा", bn:"অধ্যয়ন · অনুশীলন · পরীক্ষা"},
+  navHome: {en:"Home", hi:"होम", bn:"হোম"},
+  navStudy: {en:"Study Rules", hi:"नियम पढ़ें", bn:"নিয়ম পড়ুন"},
+  navQuiz: {en:"Practice Quiz", hi:"अभ्यास", bn:"অনুশীলন"},
+  navExam: {en:"Exam Mode", hi:"परीक्षा मोड", bn:"পরীক্ষা মোড"},
+  navAbout: {en:"About", hi:"जानकारी", bn:"সম্পর্কে"},
+  drawerHeading: {en:"Jump to a rule category", hi:"श्रेणी चुनें", bn:"একটি বিভাগে যান"},
+  footer: {en:'Based on "A Text-Book of Higher English Grammar" — Chapter XL, Miscellaneous Corrections.',
+           hi:'"A Text-Book of Higher English Grammar" — अध्याय 40, विविध सुधार पर आधारित।',
+           bn:'"A Text-Book of Higher English Grammar" — অধ্যায় ৪০, বিবিধ সংশোধন অবলম্বনে।'},
+  heroTitle: {en:"Fix the sentence. Master the rule.", hi:"वाक्य सुधारें। नियम में महारत पाएं।", bn:"বাক্য সংশোধন করুন। নিয়ম আয়ত্ত করুন।"},
+  heroSub: {en:"Every common English error, grouped exactly as in the classic grammar reference — nouns, adjectives, pronouns, verbs, adverbs, prepositions, conjunctions and idioms — with the correction and the reasoning behind it.",
+            hi:"सभी सामान्य अंग्रेज़ी त्रुटियाँ, क्लासिक व्याकरण संदर्भ के अनुसार वर्गीकृत — संज्ञा, विशेषण, सर्वनाम, क्रिया, क्रिया-विशेषण, पूर्वसर्ग, संयोजक और मुहावरे — सुधार और उसके पीछे के कारण के साथ।",
+            bn:"প্রতিটি সাধারণ ইংরেজি ভুল, ক্লাসিক ব্যাকরণ গ্রন্থ অনুযায়ী শ্রেণীবদ্ধ — বিশেষ্য, বিশেষণ, সর্বনাম, ক্রিয়া, ক্রিয়া বিশেষণ, পদান্বয়ী অব্যয়, সংযোজক অব্যয় ও বাগ্‌ধারা — সংশোধন ও তার কারণসহ।"},
+  statCats: {en:"Rule categories", hi:"नियम श्रेणियाँ", bn:"নিয়মের বিভাগ"},
+  statSentences: {en:"Practice sentences", hi:"अभ्यास वाक्य", bn:"অনুশীলন বাক্য"},
+  statLangs: {en:"Languages", hi:"भाषाएँ", bn:"ভাষা"},
+  examplesLbl: {en:"examples", hi:"उदाहरण", bn:"উদাহরণ"},
+  studyTitle: {en:"Study the rules", hi:"नियम पढ़ें", bn:"নিয়ম পড়ুন"},
+  studySub: {en:"Tap a category to see every incorrect / correct pair with the grammatical reason.",
+             hi:"हर श्रेणी में गलत/सही वाक्य-युग्म और व्याकरणिक कारण देखने के लिए टैप करें।",
+             bn:"প্রতিটি বিভাগে ভুল/সঠিক বাক্য-জোড়া ও ব্যাকরণগত কারণ দেখতে ট্যাপ করুন।"},
+  allCats: {en:"All categories", hi:"सभी श्रेणियाँ", bn:"সব বিভাগ"},
+  backAll: {en:"All categories", hi:"सभी श्रेणियाँ", bn:"সব বিভাগ"},
+  notesLbl: {en:"Exceptions & notes", hi:"अपवाद और टिप्पणियाँ", bn:"ব্যতিক্রম ও মন্তব্য"},
+  quizThis: {en:"Quiz me on this", hi:"इसका अभ्यास करें", bn:"এই বিষয়ে অনুশীলন করুন"},
+  quizTitle: {en:"Practice quiz", hi:"अभ्यास प्रश्नोत्तरी", bn:"অনুশীলন প্রশ্নোত্তর"},
+  quizSub: {en:"Choose the correct sentence. Instant feedback, no timer, no pressure.",
+            hi:"सही वाक्य चुनें। तुरंत प्रतिक्रिया, कोई समय-सीमा नहीं।",
+            bn:"সঠিক বাক্যটি বেছে নিন। তাৎক্ষণিক প্রতিক্রিয়া, কোনো সময়সীমা নেই।"},
+  categoryLbl: {en:"Category", hi:"श्रेणी", bn:"বিভাগ"},
+  allMixed: {en:"All categories (mixed)", hi:"सभी श्रेणियाँ (मिश्रित)", bn:"সব বিভাগ (মিশ্রিত)"},
+  startPractice: {en:"Start practice", hi:"अभ्यास शुरू करें", bn:"অনুশীলন শুরু করুন"},
+  whichCorrect: {en:"Which sentence is correct?", hi:"कौन सा वाक्य सही है?", bn:"কোন বাক্যটি সঠিক?"},
+  skip: {en:"Skip", hi:"छोड़ें", bn:"বাদ দিন"},
+  next: {en:"Next", hi:"अगला", bn:"পরবর্তী"},
+  correctForm: {en:"Correct form:", hi:"सही रूप:", bn:"সঠিক রূপ:"},
+  youScored: {en:"You scored", hi:"आपने अंक प्राप्त किए", bn:"আপনি স্কোর করেছেন"},
+  practiceAgain: {en:"Practice again", hi:"फिर अभ्यास करें", bn:"আবার অনুশীলন করুন"},
+  reviewMissed: {en:"Review missed items", hi:"छूटे हुए प्रश्न देखें", bn:"ভুল উত্তরগুলো দেখুন"},
+  examTitle: {en:"Exam mode", hi:"परीक्षा मोड", bn:"পরীক্ষা মোড"},
+  examSub: {en:"Timed test. Answers are locked once submitted — a full score report and review follow at the end.",
+            hi:"समयबद्ध परीक्षण। उत्तर जमा करने के बाद बदले नहीं जा सकते — अंत में पूर्ण अंक-रिपोर्ट और समीक्षा मिलेगी।",
+            bn:"সময়বদ্ধ পরীক্ষা। জমা দেওয়ার পর উত্তর বদলানো যাবে না — শেষে সম্পূর্ণ ফলাফল ও পর্যালোচনা পাবেন।"},
+  numQuestions: {en:"Number of questions", hi:"प्रश्नों की संख्या", bn:"প্রশ্ন সংখ্যা"},
+  coverage: {en:"Coverage", hi:"दायरा", bn:"পরিসর"},
+  chipAll: {en:"All categories", hi:"सभी श्रेणियाँ", bn:"সব বিভাগ"},
+  chipNouns: {en:"Nouns (490–495)", hi:"संज्ञा (490–495)", bn:"বিশেষ্য (৪৯০–৪৯৫)"},
+  chipAdj: {en:"Adjectives (496–498)", hi:"विशेषण (496–498)", bn:"বিশেষণ (৪৯৬–৪৯৮)"},
+  chipPron: {en:"Pronouns (499–502)", hi:"सर्वनाम (499–502)", bn:"সর্বনাম (৪৯৯–৫০২)"},
+  chipVerb: {en:"Verbs (503–508)", hi:"क्रिया (503–508)", bn:"ক্রিয়া (৫০৩–৫০৮)"},
+  chipAdv: {en:"Adverbs (509–511)", hi:"क्रिया-विशेषण (509–511)", bn:"ক্রিয়া বিশেষণ (৫০৯–৫১১)"},
+  chipPrep: {en:"Prepositions (512–514)", hi:"पूर्वसर्ग (512–514)", bn:"পদান্বয়ী অব্যয় (৫১২–৫১৪)"},
+  chipRest: {en:"Conjunctions, Idioms & Order (515–523)", hi:"संयोजक, मुहावरे और क्रम (515–523)", bn:"সংযোজক, বাগ্‌ধারা ও ক্রম (৫১৫–৫২৩)"},
+  timePerQ: {en:"Time per question", hi:"प्रति प्रश्न समय", bn:"প্রতি প্রশ্নে সময়"},
+  noLimit: {en:"No limit", hi:"कोई सीमा नहीं", bn:"সীমাহীন"},
+  beginExam: {en:"Begin exam", hi:"परीक्षा शुरू करें", bn:"পরীক্ষা শুরু করুন"},
+  newExam: {en:"New exam", hi:"नई परीक्षा", bn:"নতুন পরীক্ষা"},
+  toRevise: {en:"Questions to revise", hi:"दोहराने योग्य प्रश्न", bn:"পুনরালোচনার প্রশ্ন"},
+  perfectScore: {en:"Perfect score — no mistakes!", hi:"पूर्ण अंक — कोई गलती नहीं!", bn:"নিখুঁত স্কোর — কোনো ভুল নেই!"},
+  gradeExcellent: {en:"Excellent", hi:"उत्कृष्ट", bn:"চমৎকার"},
+  gradeGood: {en:"Good", hi:"अच्छा", bn:"ভালো"},
+  gradeNeeds: {en:"Needs practice", hi:"अभ्यास ज़रूरी", bn:"অনুশীলন প্রয়োজন"},
+  gradeKeep: {en:"Keep studying the rules", hi:"नियमों का अध्ययन जारी रखें", bn:"নিয়মগুলো পড়তে থাকুন"},
+  aboutTitle: {en:"About this app", hi:"ऐप की जानकारी", bn:"এই অ্যাপ সম্পর্কে"}
+};
+
+/* ===================================================================
+   DATA — every rule-category (Arts. 490–523), trilingual titles/desc/notes
+   =================================================================== */
+const CATS = [
+{id:"n-omit", num:"490", en:"Nouns Omitted", hi:"संज्ञा का लोप", bn:"বিশেষ্য বাদ পড়া",
+ desc:{en:"A noun that completes the sense is left out of a phrase; the full, idiomatic noun must be supplied.",
+       hi:"किसी वाक्यांश में अर्थ पूरा करने वाली संज्ञा छोड़ दी जाती है; पूरी मुहावरेदार संज्ञा जोड़नी चाहिए।",
+       bn:"একটি বাক্যাংশে অর্থ সম্পূর্ণ করে এমন বিশেষ্য বাদ দেওয়া হয়; সম্পূর্ণ প্রচলিত বিশেষ্যটি বসাতে হবে।"},
+ items:[
+ ["He went to his elder.","He went to his elder brother."],
+ ["He lives in the boardings.","He lives in the boarding house."],
+ ["Give me some blotting.","Give me some blotting paper."],
+ ["I went to yours.","I went to your house."],
+ ["I bought some paper, ink and others.","I bought some paper, ink and other things."]
+]},
+{id:"n-sing-pl", num:"491", en:"Singular used for Plural", hi:"एकवचन की जगह बहुवचन", bn:"বহুবচনের স্থানে একবচন",
+ desc:{en:"Certain nouns look singular but must always take a plural form and a plural verb.",
+       hi:"कुछ संज्ञाएँ एकवचन जैसी दिखती हैं परंतु सदा बहुवचन रूप और बहुवचन क्रिया लेती हैं।",
+       bn:"কিছু বিশেষ্য দেখতে একবচনের মতো হলেও সবসময় বহুবচন রূপ ও বহুবচন ক্রিয়া নেয়।"},
+ notes:[{en:"Fractions like two-thirds, three-fourths are singular or plural according as they denote amount or number.",
+        hi:"two-thirds, three-fourths जैसी भिन्न (fractions) एकवचन या बहुवचन होंगी यह इस पर निर्भर करता है कि वे मात्रा दर्शाती हैं या संख्या।",
+        bn:"two-thirds, three-fourths এর মতো ভগ্নাংশ একবচন বা বহুবচন হবে তা নির্ভর করে এটি পরিমাণ না সংখ্যা বোঝাচ্ছে তার উপর।"}],
+ items:[
+ ["My circumstance is bad.","My circumstances are bad."],
+ ["I cannot continue my study any more.","I cannot continue my studies."],
+ ["No order has yet been passed.","No orders have yet been passed."],
+ ["No pain was spared.","No pains were spared."],
+ ["He has obtained full mark.","He has obtained full marks."],
+ ["Three-fourth of the work is done.","Three-fourths of the work is done."],
+ ["Three-fourth of the men is dead.","Three-fourths of the men are dead."],
+ ["I like vegetable.","I like vegetables."],
+ ["More than two boys was present there.","More than two boys were present there."],
+ ["Is the old always wiser than the young?","Are the old always wiser than the young?"],
+ ["The police has not made any arrests so far.","The police have not made any arrests so far."],
+ ["I have taken my meal.","I have taken my meals."],
+ ["One of the boy is there.","One of the boys is there."],
+ ["He is one of those boys who is very regular in class.","He is one of those boys who are very regular in class."],
+ ["He is out of spirit.","He is out of spirits."],
+ ["He has gone out of door.","He has gone out of doors."],
+ ["He is out at elbow.","He is out at elbows."],
+ ["I feel out of sort today.","I feel out of sorts today."],
+ ["His wonder knew no bound.","His wonder knew no bounds."],
+ ["There is a lot of people there.","There are a lot of people there."],
+ ["He is one of the bright student in the class.","He is one of the bright students in the class."],
+ ["I have seen him lots of time.","I have seen him lots of times."],
+ ["I like apple more than orange.","I like apples more than oranges."],
+ ["All kind of books was displayed.","All kinds of books were displayed."],
+ ["The rich is not happier than the poor.","The rich are not happier than the poor."],
+ ["A number of books has been purchased for the library.","A number of books have been purchased for the library."]
+]},
+{id:"n-pl-sing", num:"492", en:"Plural used for Singular", hi:"बहुवचन की जगह एकवचन", bn:"একবচনের স্থানে বহুবচন",
+ desc:{en:"Uncountable or collective nouns are wrongly given an -s; they stay singular and take a singular verb.",
+       hi:"अगणनीय या सामूहिक संज्ञाओं में गलती से -s जोड़ दिया जाता है; ये एकवचन ही रहती हैं और एकवचन क्रिया लेती हैं।",
+       bn:"অগণনীয় বা সমষ্টিবাচক বিশেষ্যে ভুল করে -s যোগ করা হয়; এগুলি একবচনই থাকে এবং একবচন ক্রিয়া নেয়।"},
+ items:[
+ ["Many a good boys failed.","Many a good boy failed."],
+ ["There are pains all over the body.","There is pain all over the body."],
+ ["I give you my words.","I give you my word."],
+ ["He has kept his words.","He has kept his word."],
+ ["He is skilled in needleworks.","He is skilled in needlework."],
+ ["He gave me many good advices.","He gave me much good advice."],
+ ["All his kiths and kins are against him.","All his kith and kin are against him."],
+ ["The sceneries here are charming.","The scenery here is charming."],
+ ["There was a lot of traffics on the road yesterday.","There was a lot of traffic on the road yesterday."],
+ ["Every boy and every girl are present today.","Every boy and every girl is present today."],
+ ["He gave us wrong informations.","He gave us wrong information."],
+ ["Did you buy any fruits in the market?","Did you buy any fruit in the market?"],
+ ["Many a men want to be rich quickly.","Many a man wants to be rich quickly."],
+ ["He has sold all his furnitures.","He has sold all his furniture."],
+ ["He has purchased many furnitures.","He has purchased many pieces of furniture."],
+ ["The number of M.P's have increased.","The number of M.P's has increased."],
+ ["The bag, together with the books, are lost.","The bag, together with the books, is lost."],
+ ["He has black hairs.","He has black hair."],
+ ["This house is built of bricks.","This house is built of brick."],
+ ["To laugh in one's sleeves.","To laugh in one's sleeve."],
+ ["One of the boys there have stolen the book.","One of the boys there has stolen the book."],
+ ["He has learnt the alphabets.","He has learnt the alphabet."],
+ ["Give the story in details.","Give the story in detail."],
+ ["Take care of your luggages.","Take care of your luggage."],
+ ["Give me two dozens eggs.","Give me two dozen eggs."],
+ ["More than one person have found it so.","More than one person has found it so."],
+ ["A group of students were playing.","A group of students was playing."],
+ ["Six miles are a long distance.","Six miles is a long distance."],
+ ["I together with my brothers were stopped.","I together with my brothers was stopped."],
+ ["I bought confectioneries for the child.","I bought confectionery for the child."],
+ ["The children had lots of funs in the fair.","The children had lots of fun in the fair."],
+ ["There is lots of times before the train leaves.","There is lots of time before the train leaves."],
+ ["Here is the list of text books for the three-years degree course.","Here is the list of text books for the three-year degree course."],
+ ["There are no breads in the shop.","There is no bread in the shop."],
+ ["Nothing but a few cottages, trees and ponds were to be seen.","Nothing but a few cottages, trees and ponds was to be seen."],
+ ["His bona fides are in doubt.","His bona fides is in doubt."],
+ ["Most of the sugar are rotten.","Most of the sugar is rotten."],
+ ["Mr Bose, accompanied by his wife and children, were present there.","Mr Bose, accompanied by his wife and children, was present there."],
+ ["I met a seventeen-years-old girl there.","I met a seventeen-year-old girl there."]
+]},
+{id:"n-possessive", num:"493", en:"Misuse of the Possessive Form", hi:"स्वामित्वसूचक रूप का दुरुपयोग", bn:"সম্বন্ধ পদের ভুল ব্যবহার",
+ desc:{en:"The apostrophe-s form is attached to the wrong word, or used where 'of' should introduce the owner.",
+       hi:"अपॉस्ट्रॉफी-s गलत शब्द से जोड़ दिया जाता है, या जहाँ 'of' प्रयोग होना चाहिए वहाँ नहीं होता।",
+       bn:"অ্যাপস্ট্রফি-s ভুল শব্দের সঙ্গে যুক্ত হয়, অথবা যেখানে 'of' ব্যবহার করা উচিত সেখানে হয় না।"},
+ items:[
+ ["I have read Tagore's poems who is a great poet.","I have read the poems of Tagore, who is a great poet."],
+ ["I am fond of Keat's poems.","I am fond of Keats' poems."],
+ ["Go to the man's house who died.","Go to the house of the man who died."],
+ ["I shall go by 3 o'clock's train.","I shall go by the 3 o'clock train."],
+ ["Everybody loves Shakespeare and Tennyson's poems.","Everybody loves Shakespeare's and Tennyson's poems."],
+ ["Her house's number was not known.","The number of her house was not known."]
+]},
+{id:"n-negatives", num:"494", en:"Use of Negatives", hi:"निषेधवाचक शब्दों का प्रयोग", bn:"নেতিবাচক শব্দের ব্যবহার",
+ desc:{en:"English avoids a double negative — only one negative word is used per clause.",
+       hi:"अंग्रेज़ी में दोहरा निषेध (double negative) नहीं चलता — एक वाक्यांश में केवल एक निषेधवाचक शब्द आता है।",
+       bn:"ইংরেজিতে দ্বৈত নেতিবাচক (double negative) চলে না — একটি বাক্যাংশে কেবল একটি নেতিবাচক শব্দ থাকে।"},
+ items:[
+ ["There is not anybody here.","There is nobody here."],
+ ["Anyone does not know the truth.","No one knows the truth."]
+]},
+{id:"n-misc", num:"495", en:"Miscellaneous Noun Idioms", hi:"विविध संज्ञा-मुहावरे", bn:"বিবিধ বিশেষ্য বাগ্‌ধারা",
+ desc:{en:"Everyday words are swapped for the near-synonym that idiomatic English actually uses.",
+       hi:"रोज़मर्रा के शब्दों की जगह वह निकटतम पर्यायवाची शब्द आना चाहिए जो अंग्रेज़ी मुहावरे में वास्तव में प्रयुक्त होता है।",
+       bn:"প্রতিদিনের শব্দের বদলে সেই নিকটতম প্রতিশব্দ ব্যবহার করা উচিত যা ইংরেজি বাগ্‌ধারায় প্রকৃতপক্ষে ব্যবহৃত হয়।"},
+ items:[
+ ["He gave false witness.","He gave false evidence / bore false witness."],
+ ["It is a nice poetry.","It is a nice poem / a nice piece of poetry."],
+ ["It is fifteen minutes past three o'clock.","It is fifteen minutes past three."],
+ ["The clock has struck four hours.","The clock has struck four."],
+ ["The male were absent.","The men were absent."],
+ ["He applied for teachery.","He applied for teachership."],
+ ["I applied for lecturership.","I applied for lectureship."],
+ ["The water of this place suits me.","The climate of this place suits me."],
+ ["Do you have a television?","Do you have a television set?"],
+ ["I had no rupees.","I had no money."],
+ ["Good night, sir, how are you?","Good evening, sir, how are you?"],
+ ["He promised me food and boarding.","He promised me board and lodging."],
+ ["His English knowledge is poor.","His knowledge of English is poor."],
+ ["He brought a few articles of clothes for me.","He brought a few articles of clothing for me."],
+ ["There is no place in this bench.","There is no room on this bench."],
+ ["He has lots of rupees.","He has lots of money."],
+ ["I want three breads.","I want three pieces of bread / loaves."],
+ ["I saw a theatre last night.","I saw a play last night."],
+ ["She has a fascination for birds.","Birds have a fascination for her."],
+ ["He has five brother-in-laws.","He has five brothers-in-law."],
+ ["I quoted it from heart.","I quoted it from memory."],
+ ["I got a freeship.","I got a free studentship."],
+ ["He took much trouble to do it.","He took great pains to do it."],
+ ["My family members.","The members of my family."],
+ ["He is my class-friend.","He is my class-fellow / class-mate."],
+ ["He is my cousin brother.","He is my cousin."],
+ ["What is the cost of the pen?","What is the price of the pen?"],
+ ["He is a man of business.","He is a man of action."],
+ ["He put on pantaloons.","He put on trousers / drawers."],
+ ["We sat in the shadow of the tree.","We sat in the shade of the tree."]
+]},
+{id:"adj-misuse", num:"496", en:"Misuse of Adjectives", hi:"विशेषणों का गलत प्रयोग", bn:"বিশেষণের ভুল ব্যবহার",
+ desc:{en:"An adjective is swapped for a near-synonym, or is graded (more/most) although it is already absolute.",
+       hi:"किसी विशेषण की जगह एक निकट-पर्यायवाची लगा दिया जाता है, या ऐसे शब्द को तुलनात्मक (more/most) बना दिया जाता है जो पहले से ही पूर्ण/निरपेक्ष है।",
+       bn:"একটি বিশেষণের বদলে কাছাকাছি প্রতিশব্দ বসানো হয়, অথবা এমন শব্দকে তুলনামূলক (more/most) করা হয় যা ইতিমধ্যেই পরম।"},
+ notes:[{en:"'Prefer' is an absolute term and cannot take more/most.", hi:"'Prefer' एक निरपेक्ष शब्द है, इसमें more/most नहीं लगता।", bn:"'Prefer' একটি পরম (absolute) শব্দ, এতে more/most বসে না।"},
+        {en:"Economical = thrifty/cheap; Economic = relating to economics.", hi:"Economical = मितव्ययी/सस्ता; Economic = अर्थशास्त्र संबंधी।", bn:"Economical = মিতব্যয়ী/সস্তা; Economic = অর্থনীতি সম্পর্কিত।"}],
+ items:[
+ ["I have a strong headache.","I have a bad headache."],
+ ["This is more preferable than that.","This is preferable to that."],
+ ["Which do you prefer most?","Which do you prefer?"],
+ ["Your accent is worst than mine.","Your accent is worse than mine."],
+ ["It is a truthful report.","It is a true / correct report."],
+ ["A little number of boys remained.","A small number of boys remained."],
+ ["He made many images, big and small.","He made many images, big and little."],
+ ["I saw a most unique sight.","I saw a unique sight."],
+ ["There is not any man in the room.","There is no man in the room."],
+ ["This meat is hard.","This meat is tough."],
+ ["The world is beauty for him.","The world is beautiful for him."],
+ ["Tom is their mutual friend.","Tom is their common friend."],
+ ["My older brother is respected by all.","My elder brother is respected by all."],
+ ["He came today morning.","He came this morning."],
+ ["He is in very much distress.","He is in great distress."],
+ ["The economical position of the country is bad.","The economic position of the country is bad."],
+ ["He is the tallest boy of the school.","He is the tallest boy in the school."],
+ ["He came yesterday night.","He came last night."],
+ ["He is ready to give us farther help.","He is ready to give us further help."],
+ ["He went out with his head open.","He went out with his head bare."],
+ ["He is a reputed headmaster.","He is a headmaster of repute."],
+ ["Kolkata is farther from Delhi than Patna.","Kolkata is further from Delhi than Patna."],
+ ["It is a clouded day.","It is a cloudy day."],
+ ["This garden is five times bigger than the other.","This garden is five times as big as the other."],
+ ["Whole India mourns for him.","The whole of India (or All India) mourns for him."],
+ ["No less than fifty men was present there.","No fewer than fifty men were present there."],
+ ["He acted well in comedies than in tragedies.","He acted better in comedies than in tragedies."],
+ ["Mumbai is richer than any city in India.","Mumbai is richer than any other city in India."],
+ ["No fewer than fifty kilograms of sugar was wasted.","No less than fifty kilograms of sugar was wasted."],
+ ["He is a man of childish simplicity.","He is a man of childlike simplicity."],
+ ["He was much happy to see me.","He was very happy to see me."],
+ ["This is a dining table.","This is a dinner-table."]
+]},
+{id:"adj-misplaced", num:"497", en:"Words Misplaced", hi:"शब्दों का गलत स्थान", bn:"শব্দের ভুল স্থান",
+ desc:{en:"Possessive pronouns and quantifiers ('my', 'all', 'both') are stacked incorrectly with 'this'/'that' or nouns.",
+       hi:"स्वामित्वसूचक सर्वनाम और परिमाणवाचक शब्द ('my', 'all', 'both') 'this/that' या संज्ञा के साथ गलत क्रम में रखे जाते हैं।",
+       bn:"অধিকারবাচক সর্বনাম ও পরিমাণবাচক শব্দ ('my', 'all', 'both') 'this/that' বা বিশেষ্যের সঙ্গে ভুল ক্রমে বসানো হয়।"},
+ items:[
+ ["Why did you take my this book?","Why did you take this book of mine?"],
+ ["My all books are lost.","All my books are lost."],
+ ["My brother's all books are lost.","All my brother's books are lost."],
+ ["His both brothers are ill.","Both his brothers are ill."],
+ ["Give me a cold glass of water.","Give me a glass of cold water."],
+ ["I spent rupees ten yesterday.","I spent ten rupees yesterday."]
+]},
+{id:"articles", num:"498", en:"Use of Articles", hi:"आर्टिकल (a/an/the) का प्रयोग", bn:"আর্টিকেল (a/an/the) এর ব্যবহার",
+ desc:{en:"'A/an' or 'the' is wrongly added or wrongly dropped before fixed, idiomatic phrases.",
+       hi:"निश्चित मुहावरेदार वाक्यांशों से पहले 'a/an' या 'the' गलत तरीके से जोड़ा या हटाया जाता है।",
+       bn:"নির্দিষ্ট বাগ্‌ধারায় 'a/an' বা 'the' ভুলভাবে যোগ বা বাদ দেওয়া হয়।"},
+ items:[
+ ["I have great deal of work to do.","I have a great deal of work to do."],
+ ["Give me three and half rupees.","Give me three and a half rupees."],
+ ["My friend is in Army.","My friend is in the Army."],
+ ["The Magistrate failed to keep peace.","The Magistrate failed to keep the peace."],
+ ["I took short sleep.","I took a short sleep."],
+ ["Whole Bengal mourns for him.","The whole of Bengal mourns for him."],
+ ["People came from whole district.","People came from the whole district."],
+ ["She is in temper.","She is in a temper."],
+ ["Always speak truth.","Always speak the truth."],
+ ["I bought an one-way ticket.","I bought a one-way ticket."],
+ ["Let us go out for walk.","Let us go out for a walk."],
+ ["The vacation is drawing to close.","The vacation is drawing to a close."],
+ ["I shall try to give answer to the questions.","I shall try to give an answer to the questions."],
+ ["Give me hundred rupees.","Give me a hundred rupees."],
+ ["Benefit of doubt.","The benefit of the doubt."],
+ ["This is a slip of tongue.","This is a slip of the tongue."],
+ ["He made a fun of it.","He made fun of it."],
+ ["Dont' make noise.","Don't make a noise."],
+ ["The boy could not go to the school yesterday.","The boy could not go to school yesterday."],
+ ["Rich are seldom happy.","The rich are seldom happy."],
+ ["He will go in for law.","He will go in for the law."],
+ ["I shall go to cinema today.","I shall go to the cinema today."],
+ ["He plays guitar well.","He plays the guitar well."],
+ ["He lives in U.S.A.","He lives in the U.S.A."],
+ ["Rose is a red flower.","The rose is a red flower."],
+ ["Brahmaputra is a big river.","The Brahmaputra is a big river."],
+ ["He is the Principal of this college.","He is Principal of this college."],
+ ["We went for picnic.","We went for a picnic."],
+ ["He caught me by hand.","He caught me by the hand."],
+ ["Fire broke out in our flat.","A fire broke out in our flat."],
+ ["I am of opinion that he is wrong.","I am of the opinion that he is wrong."],
+ ["It is quarter to seven.","It is a quarter to seven."],
+ ["He accepted the post of the headmaster.","He accepted the post of headmaster."],
+ ["The man is mortal.","Man is mortal."],
+ ["He is a M.A. in Bengali.","He is an M.A. in Bengali."],
+ ["My house is near the Deshapriya Park.","My house is near Deshapriya Park."],
+ ["Go there by a train.","Go there by train."],
+ ["They elected him the President of the club.","They elected him President of the club."],
+ ["He had the rank of a Captain.","He had the rank of Captain."],
+ ["Meat is sold by kilogram.","Meat is sold by the kilogram."],
+ ["The book was in a good condition.","The book was in good condition."],
+ ["I get up early in morning.","I get up early in the morning."],
+ ["I get up before the sunrise.","I get up before sunrise."],
+ ["He had headache yesterday.","He had a headache yesterday."],
+ ["I hope to be doctor one day.","I hope to be a doctor one day."],
+ ["I enjoyed the beauty of the nature.","I enjoyed the beauty of nature."]
+]},
+{id:"pron-omit", num:"499", en:"Pronouns Omitted", hi:"सर्वनाम का लोप", bn:"সর্বনাম বাদ পড়া",
+ desc:{en:"Reflexive/anticipatory pronouns required by certain verbs and idioms are left out.",
+       hi:"कुछ क्रियाओं और मुहावरों में आवश्यक निजवाचक/प्रत्याशी सर्वनाम छोड़ दिए जाते हैं।",
+       bn:"কিছু ক্রিয়া ও বাগ্‌ধারায় প্রয়োজনীয় আত্মবাচক/প্রত্যাশী সর্বনাম বাদ পড়ে যায়।"},
+ items:[
+ ["Suffice to say, you are wrong.","Suffice it to say, you are wrong."],
+ ["I shall avail the opportunity.","I shall avail myself of the opportunity."],
+ ["He absented from the meeting.","He absented himself from the meeting."],
+ ["He prides on his success.","He prides himself on his success."],
+ ["They enjoyed at the theatre.","They enjoyed themselves at the theatre."],
+ ["No boy in the class is so good as Amal.","No other boy in the class is so good as Amal."]
+]},
+{id:"pron-insert", num:"500", en:"Pronoun Inserted", hi:"अनावश्यक सर्वनाम जोड़ना", bn:"অপ্রয়োজনীয় সর্বনাম যোগ",
+ desc:{en:"A reflexive or possessive pronoun is wrongly added to a fixed idiom that does not take one.",
+       hi:"एक निश्चित मुहावरे में जो सर्वनाम नहीं लेता, वहाँ निजवाचक/स्वामित्वसूचक सर्वनाम गलती से जोड़ दिया जाता है।",
+       bn:"যে বাগ্‌ধারায় সর্বনাম লাগে না, সেখানে ভুল করে আত্মবাচক/অধিকারবাচক সর্বনাম যোগ করা হয়।"},
+ items:[
+ ["He kept himself away from school.","He kept away from school."],
+ ["I feel myself unwell.","I feel unwell."],
+ ["He tried his heart and soul.","He tried heart and soul."],
+ ["Commit this to your heart.","Commit this to heart."],
+ ["I cannot call to my mind what happened.","I cannot call to mind what happened."],
+ ["He is out of his danger.","He is out of danger."],
+ ["I have much work on my hand.","I have much work on hand."],
+ ["Your letter is to my hand.","Your letter is to hand."],
+ ["He lost his patience.","He lost patience."],
+ ["Commit this to your memory.","Commit this to memory."],
+ ["Of all other boys he is the best.","Of all boys he is the best."]
+]},
+{id:"pron-case", num:"501", en:"Use of Case (I/me, he/him...)", hi:"कारक (Case) का प्रयोग: I/me, he/him", bn:"কারক (Case) এর ব্যবহার: I/me, he/him",
+ desc:{en:"After a preposition or 'except/between', the objective case (me, him, her) must be used, not the subjective.",
+       hi:"किसी पूर्वसर्ग या 'except/between' के बाद कर्मकारक (me, him, her) आना चाहिए, कर्ताकारक नहीं।",
+       bn:"পদান্বয়ী অব্যয় বা 'except/between' এর পরে কর্মকারক (me, him, her) বসাতে হবে, কর্তৃকারক নয়।"},
+ items:[
+ ["I want your reply at once.","I want a reply from you at once."],
+ ["I shall take your leave.","I shall take leave of you."],
+ ["I cannot bear your separation.","I cannot bear separation from you."],
+ ["Let he and I go.","Let him and me go."],
+ ["Everyone except I was present.","Everyone except me was present."],
+ ["There is trouble between he and I.","There is trouble between him and me."],
+ ["He is the man who, they say, the police arrested.","He is the man whom, they say, the police arrested."],
+ ["I saw the man whom they thought was dead.","I saw the man who they thought was dead."],
+ ["This matter should be discussed strictly between you and I.","This matter should be discussed strictly between you and me."],
+ ["All of us — Ajoy, Tapan, Bimal and me — was present.","All of us — Ajoy, Tapan, Bimal and I — were present."],
+ ["Some of you will have to come in their own cars.","Some of you will have to come in your own cars."],
+ ["I wish I were him.","I wish I were he."],
+ ["It must have been her at the door.","It must have been she at the door."],
+ ["You didn't know that it was me who did it.","You didn't know that it was I who did it."]
+]},
+{id:"pron-misc", num:"502", en:"Pronouns — Agreement & Misuse", hi:"सर्वनाम — मेल (Agreement) और दुरुपयोग", bn:"সর্বনাম — সামঞ্জস্য ও ভুল ব্যবহার",
+ desc:{en:"'Each', 'every', 'either', 'neither', 'one', 'everyone' are singular and must be followed by singular verbs/pronouns (his, not their).",
+       hi:"'Each', 'every', 'either', 'neither', 'one', 'everyone' एकवचन हैं, इनके साथ एकवचन क्रिया/सर्वनाम (his, not their) आना चाहिए।",
+       bn:"'Each', 'every', 'either', 'neither', 'one', 'everyone' একবচন — এগুলির সঙ্গে একবচন ক্রিয়া/সর্বনাম (his, their নয়) বসবে।"},
+ items:[
+ ["I bought a pen and gave the same to him.","I bought a pen and gave it to him."],
+ ["One of the boys have fallen ill.","One of the boys has fallen ill."],
+ ["I and you shall go.","You and I shall go."],
+ ["Calcutta is bigger than any city in India.","Calcutta is bigger than any other city in India."],
+ ["She was the best of all other singers.","She was the best of all singers."],
+ ["When one hears of an accident, he feels very sorry.","When one hears of an accident, one feels very sorry."],
+ ["Everything including the books were bought.","Everything including the books was bought."],
+ ["Each of them came in their turn.","Each of them came in his turn."],
+ ["One should do his duty.","One should do one's duty."],
+ ["The climate of Delhi is hotter than Calcutta.","The climate of Delhi is hotter than that of Calcutta."],
+ ["No one should leave one's own seat.","No one should leave his own seat."],
+ ["Neither of them were present.","Neither of them was present."],
+ ["One of the boys came with one's brother.","One of the boys came with his brother."],
+ ["Your pen is better than that of mine.","Your pen is better than mine."],
+ ["Each of the boys are good.","Each of the boys is good."],
+ ["Neither he nor his brother were there.","Neither he nor his brother was there."],
+ ["Ram, Shyam and Jadu, each have come.","Ram, Shyam and Jadu, each has come."],
+ ["Each boy and each girl are present today.","Each boy and each girl is present today."],
+ ["The two boys help one another.","The two boys help each other."],
+ ["Either the boy or his friends is responsible for this.","Either the boy or his friends are responsible for this."],
+ ["Everyone must do their duty.","Everyone must do his duty."],
+ ["Neither of them saw each other.","Neither of them saw the other."],
+ ["The more you practice, you will get better.","The more you practice, the better you will get."],
+ ["Neither of the four girls succeeded.","None of the four girls succeeded."],
+ ["Myself will do it.","I myself will do it."],
+ ["Rabin and myself went there.","Rabin and I went there."],
+ ["He brought his small sister with himself.","He brought his small sister with him."]
+]},
+{id:"v-passive", num:"503", en:"Passive misused for Active", hi:"कर्मवाच्य का गलत प्रयोग (Active की जगह)", bn:"কর্মবাচ্যের ভুল ব্যবহার (কর্তৃবাচ্যের বদলে)",
+ desc:{en:"Intransitive or stative verbs (belong, seem, die, issue) are wrongly turned into the passive voice.",
+       hi:"अकर्मक या स्थिति-सूचक क्रियाओं (belong, seem, die, issue) को गलती से कर्मवाच्य (passive) बना दिया जाता है।",
+       bn:"অকর্মক বা অবস্থাসূচক ক্রিয়া (belong, seem, die, issue) ভুলবশত কর্মবাচ্যে পরিণত করা হয়।"},
+ notes:[{en:"Adjectives are generally followed by the active infinitive, not the passive one — 'hard to believe', not 'hard to be believed'.",
+        hi:"विशेषण के बाद सामान्यतः कर्ताकारक infinitive आता है, कर्मवाच्य नहीं — 'hard to believe', 'hard to be believed' नहीं।",
+        bn:"বিশেষণের পরে সাধারণত কর্তৃবাচ্য infinitive বসে, কর্মবাচ্য নয় — 'hard to believe', 'hard to be believed' নয়।"}],
+ items:[
+ ["A quarrel was ensued.","A quarrel ensued."],
+ ["The book is belonged to me.","The book belongs to me."],
+ ["He was seemed to be happy.","He seemed to be happy."],
+ ["The river is issued from a lake.","The river issues from a lake."],
+ ["He was died of fever.","He died of fever."],
+ ["This is hard to be believed.","This is hard to believe."],
+ ["This is not easy to be learnt.","This is not easy to learn."],
+ ["He was despaired of success.","He despaired of success."],
+ ["The event was happened long ago.","The event happened long ago."],
+ ["He was impossible to be convinced.","It was impossible to convince him."],
+ ["He has been profited by the experience.","He profited by the experience."]
+]},
+{id:"v-misuse", num:"504", en:"Misuse of Verbs", hi:"क्रियाओं का दुरुपयोग", bn:"ক্রিয়ার ভুল ব্যবহার",
+ desc:{en:"A verb is swapped for a similar-sounding or similar-meaning verb that idiom does not actually allow here.",
+       hi:"क्रिया की जगह ऐसा मिलता-जुलता क्रिया-शब्द लगा दिया जाता है जिसे मुहावरा यहाँ स्वीकार नहीं करता।",
+       bn:"একটি ক্রিয়ার বদলে কাছাকাছি অর্থের বা ধ্বনির ক্রিয়া বসানো হয় যা এখানে বাগ্‌ধারা মেনে নেয় না।"},
+ notes:[{en:"See/look at: 'see' is effortless perception; 'look at' implies deliberate attention.", hi:"See/look at: 'see' सहज अनुभूति है; 'look at' सचेत ध्यान दर्शाता है।", bn:"See/look at: 'see' হলো সহজাত উপলব্ধি; 'look at' মানে সচেতন মনোযোগ।"},
+        {en:"Hear/listen: 'hear' is passive; 'listen' implies attention.", hi:"Hear/listen: 'hear' निष्क्रिय है; 'listen' ध्यान देना दर्शाता है।", bn:"Hear/listen: 'hear' নিষ্ক্রিয়; 'listen' মানে মনোযোগ দেওয়া।"},
+        {en:"Make a mistake, do wrong/harm, commit a crime/fault — these verb-noun pairs are fixed.", hi:"Make a mistake, do wrong/harm, commit a crime/fault — ये क्रिया-संज्ञा जोड़े निश्चित हैं।", bn:"Make a mistake, do wrong/harm, commit a crime/fault — এই ক্রিয়া-বিশেষ্য জোড়গুলি নির্দিষ্ট।"}],
+ items:[
+ ["He says me a fool.","He calls me a fool."],
+ ["He says good English.","He speaks good English."],
+ ["He spoke a lie.","He told a lie."],
+ ["He tells that he will go away.","He says that he will go away."],
+ ["I told him, 'Go away'.","I said to him, 'Go away'."],
+ ["Please see my certificates.","Please look at my certificates."],
+ ["See the word in the dictionary.","Look up the word in the dictionary."],
+ ["Please see the pulse of the patient.","Please feel the pulse of the patient."],
+ ["Eat one's dinner.","Take / have one's dinner."],
+ ["He was so rude that I could not hear him.","He was so rude that I could not listen to him."],
+ ["I forwarded myself as a candidate.","I offered myself as a candidate."],
+ ["You have made a wrong to him.","You have done a wrong to him."],
+ ["He kept pass marks.","He obtained / got pass marks."],
+ ["We once knew that he was honest, but now we find our mistake.","We once believed that he was honest, but now we find our mistake."],
+ ["He takes recourse to fraud.","He has recourse to fraud."],
+ ["Can I come in, sir?","May I come in, sir?"],
+ ["He denied to help me and said me a fool.","He refused to help me and called me a fool."],
+ ["He knows to swim.","He knows how to swim."],
+ ["I refused that I had done.","I denied that I had done it."],
+ ["Please hear his advice.","Please listen to his advice."],
+ ["He will not go, I believe.","He will not go, I presume."],
+ ["Please grant me leave, as I intend to go home.","Please grant me leave, as I wish to go home."],
+ ["Do not catch my hand.","Do not catch hold of my hand."],
+ ["Will you take a cigarette?","Will you have a cigarette?"],
+ ["He has thrown the milk.","He has spilt / upset the milk."],
+ ["I hope it will take a week.","I expect it will take a week."],
+ ["They made two goals.","They scored two goals."],
+ ["I want to mend my pencil.","I want to sharpen my pencil."],
+ ["He gave me a visit.","He paid me a visit."],
+ ["He was tired, so he laid down.","He was tired, so he lay down."],
+ ["He stroke me very hard.","He struck me very hard."],
+ ["The river has overflown its banks.","The river has overflowed its banks."],
+ ["My father admitted me into that school.","My father got me admitted into that school."],
+ ["I await for your decision.","I await your decision."],
+ ["I desire that he would win.","I desire that he should win."],
+ ["I intend that he will be a doctor.","I intend that he shall be a doctor."],
+ ["I hope I shall not pass.","I am afraid I shall not pass."],
+ ["It is lightning just now.","It lightened just now."],
+ ["He has an interest in music.","He is interested in music."]
+]},
+{id:"v-tense", num:"505", en:"Use of Tense", hi:"काल (Tense) का प्रयोग", bn:"কাল (Tense) এর ব্যবহার",
+ desc:{en:"Continuous / simple / perfect tenses are swapped incorrectly, especially with 'for/since', reported speech, and conditional 'if'.",
+       hi:"निरंतर/सामान्य/पूर्ण काल (continuous/simple/perfect tense) का गलत प्रयोग, विशेषकर 'for/since', अप्रत्यक्ष कथन और 'if' के साथ।",
+       bn:"নিরবচ্ছিন্ন/সাধারণ/পুরাঘটিত কাল ভুলভাবে ব্যবহৃত হয়, বিশেষত 'for/since', পরোক্ষ উক্তি ও শর্তসাপেক্ষ 'if' এর সঙ্গে।"},
+ notes:[{en:"An action continuing from the past up to now, with 'for/since', needs the present perfect (continuous): 'has been raining for a week', not 'is raining for a week'.",
+        hi:"अतीत से अब तक जारी क्रिया, 'for/since' के साथ, present perfect (continuous) लेती है: 'has been raining for a week', 'is raining for a week' नहीं।",
+        bn:"অতীত থেকে এখন পর্যন্ত চলতে থাকা কাজ, 'for/since' সহ, present perfect (continuous) নেয়: 'has been raining for a week', 'is raining for a week' নয়।"},
+        {en:"'It is high time' is followed by a past-tense verb even though the meaning is present/future.",
+        hi:"'It is high time' के बाद past tense क्रिया आती है, यद्यपि अर्थ वर्तमान/भविष्य का होता है।",
+        bn:"'It is high time' এর পরে past tense ক্রিয়া বসে, যদিও অর্থ বর্তমান/ভবিষ্যৎ।"}],
+ items:[
+ ["It is raining for a week.","It has been raining for a week."],
+ ["He is suffering for three days.","He has been suffering for three days."],
+ ["The earth is moving round the sun.","The earth moves round the sun."],
+ ["I have arrived yesterday.","I arrived yesterday."],
+ ["I have seen my friend long ago.","I saw my friend long ago."],
+ ["You are not understanding my difficulties.","You do not understand my difficulties."],
+ ["Try hard so that you might win.","Try hard so that you may win."],
+ ["I am looking forward to see you soon.","I am looking forward to seeing you soon."],
+ ["I wish you will help me.","I wish you would help me."],
+ ["I hope he would do well.","I hope he will do well."],
+ ["When you will come here, I shall go with you.","When you come here, I shall go with you."],
+ ["The crops will die before the rains will fall.","The crops will die before the rains fall."],
+ ["Should you pass he will be happy.","Should you pass he would be happy."],
+ ["If I should meet a tiger I shall run.","If I should meet a tiger I should run."],
+ ["He speaks as if he knows the subject well.","He speaks as if he knew the subject well."],
+ ["It is high time government do something in this matter.","It is high time government did something in this matter."],
+ ["I am living in Suri for a long time.","I have been living at Suri for a long time."],
+ ["Forty years passed since India has become free.","Forty years have passed since India became free."],
+ ["My friend has gone out before I arrived.","My friend had gone out before I arrived."],
+ ["I have been in Delhi two months ago.","I was in Delhi two months ago."],
+ ["You had better to go home now.","You had better go home now."],
+ ["When I returned home, he still didn't finish the job.","When I returned home, he still hadn't finished the job."],
+ ["As we discussed the matter the phone rang.","As we were discussing the matter, the phone rang."],
+ ["He assured he will come.","He assured he would come."],
+ ["She said she has never seen him before.","She said she had never seen him before."],
+ ["If I would have known, I wouldn't have gone.","If I had known, I wouldn't have gone."],
+ ["I asked him what he has done.","I asked him what he had done."]
+]},
+{id:"v-interrog", num:"506", en:"Interrogative Form (indirect questions)", hi:"प्रश्नवाचक रूप (अप्रत्यक्ष प्रश्न)", bn:"প্রশ্নবোধক রূপ (পরোক্ষ প্রশ্ন)",
+ desc:{en:"In an indirect / reported question the word order returns to statement order (subject before verb) — no inversion.",
+       hi:"अप्रत्यक्ष प्रश्न में शब्द-क्रम कथन जैसा हो जाता है (कर्ता क्रिया से पहले) — कोई उलटफेर (inversion) नहीं होता।",
+       bn:"পরোক্ষ প্রশ্নে শব্দক্রম বিবৃতির মতো হয়ে যায় (কর্তা ক্রিয়ার আগে) — কোনো উল্টানো (inversion) হয় না।"},
+ items:[
+ ["Where you are coming from?","Where are you coming from?"],
+ ["He asked why did I not go?","He asked why I did not go."],
+ ["Tell me how are you?","Tell me how you are."],
+ ["He asked what I want?","He asked what I wanted."],
+ ["Do you know who am I?","Do you know who I am?"],
+ ["I know who are you.","I know who you are."],
+ ["Tell me what is his name?","Tell me what his name is."],
+ ["Why you went there?","Why did you go there?"],
+ ["How you can do it?","How can you do it?"],
+ ["Between whom the battle was fought?","Between whom was the battle fought?"],
+ ["He is not a good boy, isn't it?","He is not a good boy, is he?"],
+ ["He can't swim, isn't it?","He can't swim, can he?"],
+ ["He can swim, can he?","He can swim, can't he?"],
+ ["I must go, isn't it?","I must go, mustn't I?"],
+ ["You are going to the picture, isn't it?","You are going to the picture, aren't you?"]
+]},
+{id:"v-inf-ger", num:"507", en:"Infinitive vs Gerund", hi:"Infinitive बनाम Gerund", bn:"Infinitive বনাম Gerund",
+ desc:{en:"Certain verbs and prepositions must be followed by a gerund (-ing), not a to-infinitive, and vice versa.",
+       hi:"कुछ क्रियाओं और पूर्वसर्गों के बाद gerund (-ing) आना चाहिए, to-infinitive नहीं — और कुछ में इसका उलटा।",
+       bn:"কিছু ক্রিয়া ও preposition এর পরে gerund (-ing) বসাতে হয়, to-infinitive নয় — কিছুতে এর উল্টো।"},
+ notes:[{en:"'For' + gerund shows cause, not purpose: 'He was punished for going there' — purpose needs the plain infinitive.",
+        hi:"'For' + gerund कारण दर्शाता है, उद्देश्य नहीं: 'He was punished for going there' — उद्देश्य के लिए सामान्य infinitive चाहिए।",
+        bn:"'For' + gerund কারণ বোঝায়, উদ্দেশ্য নয়: 'He was punished for going there' — উদ্দেশ্য বোঝাতে সাধারণ infinitive লাগে।"}],
+ items:[
+ ["He succeeded to win the prize.","He succeeded in winning the prize."],
+ ["He persisted to go.","He persisted in going."],
+ ["Capable to do.","Capable of doing."],
+ ["He despaired to pass.","He despaired of passing."],
+ ["Stop to write.","Stop writing."],
+ ["I went there with the hope to see him.","I went there with the hope of seeing him."],
+ ["I could not help to do it.","I could not help doing it."],
+ ["I have finished to write.","I have finished writing."],
+ ["You have no excuse to be late.","You have no excuse for being late."],
+ ["He prevented me to go.","He prevented me from going."],
+ ["He has stopped to smoke.","He has stopped smoking."],
+ ["We are looking forward to see you.","We are looking forward to seeing you."],
+ ["What are their reasons to say this?","What are their reasons for saying this?"],
+ ["He was accused to be the culprit.","He was accused of being the culprit."],
+ ["He was suspected to be the murderer.","He was suspected of being the murderer."],
+ ["He came for seeing me.","He came to see me."],
+ ["I went there for getting help.","I went there to get help."],
+ ["The studying of scientific fiction is his hobby.","The study of scientific fiction is his hobby."],
+ ["I intend learning German.","I intend to learn German."]
+]},
+{id:"v-misc", num:"508", en:"Verbs — Miscellaneous (mood, participles)", hi:"क्रिया — विविध (Mood, Participles)", bn:"ক্রিয়া — বিবিধ (Mood, Participle)",
+ desc:{en:"Subjunctive 'were', dangling participles, and misplaced modifiers are corrected here.",
+       hi:"Subjunctive 'were', लटकते हुए Participle (dangling participle) और गलत स्थान पर लगे modifier यहाँ ठीक किए गए हैं।",
+       bn:"Subjunctive 'were', ঝুলন্ত participle এবং ভুল স্থানে বসা modifier এখানে সংশোধন করা হয়েছে।"},
+ notes:[{en:"An introductory participial phrase must be followed immediately by the noun/pronoun it modifies, or it 'dangles'.",
+        hi:"किसी प्रारंभिक Participial Phrase के तुरंत बाद वह संज्ञा/सर्वनाम आना चाहिए जिसे वह विशेषित करता है, अन्यथा वह 'dangle' करता है।",
+        bn:"একটি প্রারম্ভিক participial phrase-এর ঠিক পরেই সেই বিশেষ্য/সর্বনাম বসতে হবে যাকে এটি বর্ণনা করছে, নাহলে এটি 'dangle' করে।"}],
+ items:[
+ ["I wish I was dead.","I wish I were dead."],
+ ["I would do it if I was he.","I would do it if I were he."],
+ ["I am the man who am guilty.","I am the man who is guilty."],
+ ["It is you who is guilty.","It is you who are guilty."],
+ ["You mistake in thinking this.","You are mistaken in thinking this."],
+ ["I desire that he will win.","I desire that he should win."],
+ ["He speaks as if he knows everything.","He speaks as if he knew everything."],
+ ["He need not to go.","He need not go."],
+ ["I need go there.","I need to go there."],
+ ["I saw a dead ox walking there.","While walking there, I saw a dead ox."],
+ ["Writing a letter it was posted.","Writing a letter, I posted it."],
+ ["We left Calcutta on Sunday reaching Benaras the next day.","We left Calcutta on Sunday and reached Benaras the next day."],
+ ["Alarmed by his temperature, a car was sent for the doctor.","Alarmed by his temperature, we sent a car for the doctor."],
+ ["Lying in bed, an idea occurred to me.","As I was lying in bed, an idea occurred to me."],
+ ["Being a rainy day, we did not go out for a walk.","It being a rainy day, we did not go out for a walk."],
+ ["I asked him to regularly take exercise.","I asked him to take exercise regularly."],
+ ["The old machines are substituted by new ones.","The old machines are replaced by new ones."],
+ ["Arriving late at the bus stop the bus went off without me.","Arriving late at the bus stop, I missed the bus."],
+ ["Seeing that the hour was late, it was decided to postpone the vote.","Seeing that the hour was late, the committee decided to postpone the vote."],
+ ["Unaccustomed to getting up early, it was difficult for him to go to work on time.","Unaccustomed to getting up early, he found it difficult to go to work on time."]
+]},
+{id:"adv-omit", num:"509", en:"Adverbs Omitted", hi:"क्रिया-विशेषण (Adverb) का लोप", bn:"ক্রিয়া বিশেষণ বাদ পড়া",
+ desc:{en:"A necessary particle/adverb (out, away, how) that completes a phrasal verb is left out.",
+       hi:"किसी वाक्यांश-क्रिया (phrasal verb) को पूरा करने वाला आवश्यक adverb (out, away, how) छोड़ दिया जाता है।",
+       bn:"phrasal verb সম্পূর্ণ করে এমন প্রয়োজনীয় adverb (out, away, how) বাদ পড়ে যায়।"},
+ items:[
+ ["As I awoke the thief ran.","As I awoke the thief ran away."],
+ ["I do not know to dance.","I do not know how to dance."],
+ ["He is regarded a fool.","He is regarded as a fool."],
+ ["They drove the enemy.","They drove out the enemy."],
+ ["He prefers to walk than to ride.","He prefers walking to riding."]
+]},
+{id:"adv-insert", num:"510", en:"Adverbs Inserted", hi:"अनावश्यक Adverb जोड़ना", bn:"অপ্রয়োজনীয় ক্রিয়া বিশেষণ যোগ",
+ desc:{en:"A redundant adverb or 'as' is added to a verb of naming/electing/considering that does not need it.",
+       hi:"नामकरण/चुनाव/मानने वाली क्रिया (naming, electing, considering) में अनावश्यक adverb या 'as' जोड़ दिया जाता है।",
+       bn:"নামকরণ/নির্বাচন/মত প্রকাশক ক্রিয়ায় (naming, electing, considering) অপ্রয়োজনীয় adverb বা 'as' যোগ করা হয়।"},
+ items:[
+ ["He was cowed down by threat.","He was cowed by threat."],
+ ["I cannot continue it any longer.","I cannot continue it."],
+ ["The boy was named as Raja by his parents.","The boy was named Raja by his parents."],
+ ["I shall try as best as I can.","I shall try as best I can."],
+ ["He is comparatively better today.","He is better today / comparatively well today."],
+ ["He was elected as chairman.","He was elected chairman."],
+ ["He was appointed as Headmaster.","He was appointed Headmaster."],
+ ["I considered him as my brother.","I considered him my brother / regarded him as my brother."],
+ ["We are united together.","We are united."]
+]},
+{id:"adv-misc", num:"511", en:"Adverbs — Miscellaneous", hi:"Adverb — विविध", bn:"ক্রিয়া বিশেষণ — বিবিধ",
+ desc:{en:"Adjectives are mistakenly used as adverbs (masterly, cowardly), and near-synonym adverbs are confused (hardly/hard, freely/free).",
+       hi:"विशेषणों को गलती से क्रिया-विशेषण (adverb) की तरह प्रयोग किया जाता है (masterly, cowardly), और निकट-पर्यायवाची adverbs में भ्रम होता है (hardly/hard, freely/free)।",
+       bn:"বিশেষণকে ভুলবশত adverb হিসেবে ব্যবহার করা হয় (masterly, cowardly), এবং কাছাকাছি অর্থের adverb-এ বিভ্রান্তি হয় (hardly/hard, freely/free)।"},
+ notes:[{en:"Timely, masterly, cowardly, gentlemanly are adjectives, not adverbs — use 'in a ... manner'.", hi:"Timely, masterly, cowardly, gentlemanly विशेषण हैं, adverb नहीं — 'in a ... manner' प्रयोग करें।", bn:"Timely, masterly, cowardly, gentlemanly বিশেষণ, adverb নয় — 'in a ... manner' ব্যবহার করুন।"},
+        {en:"Directly = immediately; direct = straight.", hi:"Directly = तुरंत; direct = सीधा।", bn:"Directly = অবিলম্বে; direct = সোজা।"},
+        {en:"Freely = liberally (not 'without charge').", hi:"Freely = उदारतापूर्वक (मुफ़्त में नहीं)।", bn:"Freely = মুক্তভাবে/উদারভাবে (বিনামূল্যে নয়)।"}],
+ items:[
+ ["The stone is very hard to be broken.","The stone is too hard to be broken."],
+ ["I am too glad to see you.","I am very glad to see you."],
+ ["This is somewhat true.","This is partly true."],
+ ["I am quite sorry to learn this.","I am very sorry to learn this."],
+ ["The boys went by and by.","The boys went one by one."],
+ ["He became a district magistrate by and by.","He became a district magistrate in course of time."],
+ ["Will you go there? Of course, I shall.","Will you go there? Certainly, I shall."],
+ ["Do not stop on the way but go home directly.","Do not stop on the way but go home direct."],
+ ["I hit him hardly.","I hit him hard."],
+ ["The medicine is distributed freely.","The medicine is distributed free."],
+ ["I told him the story in details.","I told him the story in detail."],
+ ["He had his bath, ate his breakfast and after all went to school.","He had his bath, ate his breakfast and then went to school."],
+ ["I have been ill long since.","I have been ill for a long time."],
+ ["He did it long before.","He did it long ago."],
+ ["He met me two days before.","He met me two days ago."],
+ ["I seldom or ever find them quarrelling.","I seldom or never find them quarrelling."],
+ ["I could not arrive there timely.","I could not arrive there in time."],
+ ["The subject has been masterly treated.","The subject has been treated in a masterly way."],
+ ["He behaved gentlemanly.","He behaved in a gentlemanly manner."],
+ ["He acted cowardly.","He acted like a coward / in a cowardly manner."],
+ ["What do you prefer most?","What do you prefer?"],
+ ["He was so coward that he did not help his friend.","He was such a coward that he did not help his friend."],
+ ["He is suffering from fever since a week.","He has been suffering from fever for a week."],
+ ["Hurry up, else you will miss the train.","Hurry up, or you will miss the train."],
+ ["They had a real good time.","They had a really good time."],
+ ["You cannot succeed other than by hard work.","You cannot succeed except by hard work."],
+ ["He does his work very good.","He does his work very well."],
+ ["He is at the same class with me.","He is in the same class as I am."],
+ ["It is raining; please stay indoor.","It is raining; please stay indoors."],
+ ["I doubt that he will come.","I doubt whether (or if) he will come."]
+]},
+{id:"prep-omit", num:"512", en:"Prepositions Omitted", hi:"पूर्वसर्ग (Preposition) का लोप", bn:"পদান্বয়ী অব্যয় (Preposition) বাদ পড়া",
+ desc:{en:"A verb that idiomatically needs a following preposition (dispense with, pray to, believe in) is used without it.",
+       hi:"जिस क्रिया के साथ मुहावरे में पूर्वसर्ग आवश्यक है (dispense with, pray to, believe in), वहाँ इसे छोड़ दिया जाता है।",
+       bn:"যে ক্রিয়ায় বাগ্‌ধারা অনুযায়ী preposition আবশ্যক (dispense with, pray to, believe in), সেখানে তা বাদ দেওয়া হয়।"},
+ items:[
+ ["We dispensed his services.","We dispensed with his services."],
+ ["I pray God.","I pray to God."],
+ ["I shall compensate you the loss.","I shall compensate you for the loss."],
+ ["He is suffering fever.","He is suffering from fever."],
+ ["He meditates the past life.","He meditates upon the past life."],
+ ["I informed him the matter.","I informed him of the matter."],
+ ["He refers me in the letter.","He refers to me in the letter."],
+ ["Attend your work.","Attend to your work."],
+ ["Open page 50.","Open at page 50."],
+ ["I believe God.","I believe in God."],
+ ["He availed the opportunity.","He availed himself of the opportunity."],
+ ["Your conduct admits no excuse.","Your conduct admits of no excuse."],
+ ["The prize was hotly competed.","The prize was hotly competed for."],
+ ["I confess some suspicion in my mind.","I confess to some suspicion in my mind."],
+ ["He tyrannised the people.","He tyrannised over the people."],
+ ["Do not boast your money.","Do not boast of your money."],
+ ["He complied my request.","He complied with my request."],
+ ["I cannot conceive such cruelty.","I cannot conceive of such cruelty."],
+ ["I begged him a favour.","I begged him for a favour."],
+ ["I do not approve your action.","I do not approve of your action."]
+]},
+{id:"prep-insert", num:"513", en:"Prepositions Inserted", hi:"अनावश्यक पूर्वसर्ग जोड़ना", bn:"অপ্রয়োজনীয় Preposition যোগ",
+ desc:{en:"An extra preposition is tacked on to a verb that is already complete without it (discuss, resemble, comprise).",
+       hi:"जो क्रिया पहले से पूर्ण है (discuss, resemble, comprise), उसमें एक अतिरिक्त पूर्वसर्ग जोड़ दिया जाता है।",
+       bn:"যে ক্রিয়া ইতিমধ্যেই সম্পূর্ণ (discuss, resemble, comprise), তাতে একটি অতিরিক্ত preposition জুড়ে দেওয়া হয়।"},
+ items:[
+ ["I regret at the delay.","I regret the delay."],
+ ["He resembles to his father.","He resembles his father."],
+ ["This violates against the rule.","This violates the rule."],
+ ["Recommend for me to him.","Recommend me to him."],
+ ["Investigate into the matter.","Investigate the matter."],
+ ["Let us discuss about the matter.","Let us discuss the matter."],
+ ["He opposed against us.","He opposed us."],
+ ["He tried with heart and soul.","He tried heart and soul."],
+ ["He ordered for my dismissal.","He ordered my dismissal."],
+ ["They ascended on the hill.","They ascended the hill."],
+ ["The family comprises of ten members.","The family comprises ten members."],
+ ["He picked up a quarrel with me.","He picked a quarrel with me."],
+ ["He pocketed up the insult.","He pocketed the insult."],
+ ["This feeling pervades through the country.","This feeling pervades the country."],
+ ["They arrived at here yesterday.","They arrived here yesterday."],
+ ["He resigned from the post.","He resigned the post."],
+ ["This does not answer to my purpose.","This does not answer my purpose."],
+ ["I shall combat with your views.","I shall combat your views."],
+ ["I emphasised on the point.","I emphasised the point."],
+ ["He left the place with bag and baggage.","He left the place bag and baggage."],
+ ["We reached in Calcutta safely.","We reached Calcutta safely."],
+ ["He could not cope up with the heavy work.","He could not cope with the heavy work."],
+ ["He ordered for a cup of tea.","He ordered a cup of tea."],
+ ["He met with us there.","He met us there."],
+ ["He entered in the house.","He entered the house."]
+]},
+{id:"prep-misuse", num:"514", en:"Misuse of Prepositions", hi:"पूर्वसर्ग का गलत प्रयोग", bn:"Preposition এর ভুল ব্যবহার",
+ desc:{en:"The wrong preposition is chosen for a fixed idiom — a large group of frequently-tested pairs.",
+       hi:"किसी निश्चित मुहावरे के लिए गलत पूर्वसर्ग चुन लिया जाता है — यह अक्सर परीक्षा में पूछी जाने वाली एक बड़ी श्रेणी है।",
+       bn:"একটি নির্দিষ্ট বাগ্‌ধারার জন্য ভুল preposition বেছে নেওয়া হয় — পরীক্ষায় প্রায়ই আসা এক বড় বিভাগ।"},
+ items:[
+ ["It was substituted by another.","Another was substituted for it."],
+ ["He is absent at the meeting.","He is absent from the meeting."],
+ ["We arrived to school late.","We arrived at school late."],
+ ["He is confined in bed.","He is confined to bed."],
+ ["He boasts for his wealth.","He boasts of his wealth."],
+ ["Cats live by milk.","Cats live on milk."],
+ ["He is in that committee.","He is on that committee."],
+ ["Be careful for your health.","Be careful of your health."],
+ ["There is no remedy of this.","There is no remedy for this."],
+ ["He is good in mathematics.","He is good at mathematics."],
+ ["He died from cancer.","He died of cancer."],
+ ["He gave me a cheque of Rs. 500.","He gave me a cheque for Rs. 500."],
+ ["He passed as a nice man there.","He passed for a nice man there."],
+ ["There is no end of troubles.","There is no end to troubles."],
+ ["This is the reason of his downfall.","This is the reason for his downfall."],
+ ["She suffers with fever.","She suffers from fever."],
+ ["He listened to the news by the radio.","He listened to the news on the radio."],
+ ["He was cured from cold.","He was cured of cold."],
+ ["He is ill of flu.","He is ill with flu."],
+ ["He was invited at the meeting.","He was invited to the meeting."],
+ ["What is the best cure of this disease?","What is the best cure for this disease?"],
+ ["It is the most expensive car of the world.","It is the most expensive car in the world."],
+ ["He is different than his brother.","He is different from his brother."],
+ ["We did not arrive at time.","We did not arrive in / on time."],
+ ["He differs from his brother on this issue.","He differs with his brother on this issue."],
+ ["I am tired with this work.","I am tired of this work."],
+ ["Flour is made of wheat.","Flour is made from wheat."],
+ ["I devoted the time in reading.","I devoted the time to reading."],
+ ["He was appointed in that post.","He was appointed to that post."],
+ ["What is the time in your watch?","What is the time by your watch?"],
+ ["The chair is made from wood.","The chair is made of wood."],
+ ["He has been here since many years.","He has been here for many years."],
+ ["Do not jump at a conclusion.","Do not jump to a conclusion."],
+ ["He jumped to the offer of help.","He jumped at the offer of help."],
+ ["Due to the accident, he could not go.","Owing to the accident, he could not go."],
+ ["He spent his all for this house.","He spent his all on this house."],
+ ["You should not lose sight from the fact.","You should not lose sight of the fact."],
+ ["His knowledge in English is poor.","His knowledge of English is poor."],
+ ["He started for his journey.","He started on his journey."],
+ ["I could not go for illness.","I could not go on account of illness."],
+ ["The boy is only eight, and in that age he needs care.","The boy is only eight, and at that age he needs care."],
+ ["You must do it before a week.","You must do it within a week."],
+ ["I shall go after a week.","I shall go in a week."],
+ ["He died in a few days.","He died after a few days."],
+ ["It is a quarter before five.","It is a quarter to five."],
+ ["I am interested about the matter.","I am interested in the matter."],
+ ["It is difficult to me.","It is difficult for me."],
+ ["The examination will begin from 2nd March.","The examination will begin on 2nd March."],
+ ["The family is composed with ten members.","The family is composed of ten members."],
+ ["The child was run upon by a car.","The child was run over by a car."],
+ ["The policeman took the patient at the nearest hospital.","The policeman took the patient to the nearest hospital."],
+ ["He has an account on that bank.","He has an account at / with that bank."],
+ ["They departed to Tokyo.","They departed for Tokyo."],
+ ["They went to Delhi for business.","They went to Delhi on business."],
+ ["He is senior/junior than me.","He is senior/junior to me."],
+ ["He is superior/inferior than me in all respects.","He is superior/inferior to me in all respects."],
+ ["I prefer Ram than Shyam.","I prefer Ram to Shyam."],
+ ["I shall look after the matter.","I shall look into the matter."],
+ ["I congratulated him for his success.","I congratulated him on his success."],
+ ["Sri Lanka is in the south of India.","Sri Lanka is to the south of India."],
+ ["He was born from rich parents.","He was born of rich parents."],
+ ["He lectured about pollution control.","He lectured on pollution control."],
+ ["I caught him in the neck.","I caught him by the neck."],
+ ["The boys were joking to each other.","The boys were joking with each other."],
+ ["He is not in good terms with his brother.","He is not on good terms with his brother."],
+ ["He comes from a rich family.","He comes of a rich family."],
+ ["He has been ill since ten days.","He has been ill for the last ten days."],
+ ["They went to Delhi a month before.","They went to Delhi a month ago."],
+ ["He begged this dress from me.","He begged this dress of me."],
+ ["He took the initiative of doing it.","He took the initiative in doing it."],
+ ["It is a quarter after five.","It is a quarter past five."],
+ ["I live with Rs. 400 a month.","I live on Rs. 400 a month."],
+ ["He walks with a speed of five miles an hour.","He walks at a speed of five miles an hour."],
+ ["Ram was married with Sita.","Ram was married to Sita."],
+ ["The train stops on all stations.","The train stops at all stations."],
+ ["He went there by horse.","He went there on horseback."]
+]},
+{id:"conj", num:"515", en:"Conjunctions", hi:"संयोजक (Conjunction)", bn:"সংযোজক অব্যয় (Conjunction)",
+ desc:{en:"Correlative pairs (either...or, not only...but also) and clause-linkers (unless, lest, doubt that/if) are mismatched.",
+       hi:"सहसंबद्ध जोड़े (either...or, not only...but also) और उपवाक्य-जोड़क (unless, lest, doubt that/if) गलत तरीके से मिलाए जाते हैं।",
+       bn:"সহসম্পর্কিত জোড়া (either...or, not only...but also) এবং clause-জোড়কারী (unless, lest, doubt that/if) ভুলভাবে মেলানো হয়।"},
+ items:[
+ ["He got a pension till his life.","He got a pension for life."],
+ ["He called me as a fool.","He called me a fool."],
+ ["Unless you do not work hard you will fail.","Unless you work hard you will fail."],
+ ["Wait until I do not return.","Wait until I return."],
+ ["We had better go home than to wait.","We had better go home than wait."],
+ ["When you are guilty you must suffer.","As (or since) you are guilty you must suffer."],
+ ["Work hard lest you do not fail.","Work hard lest you should fail."],
+ ["It was not long until he came.","It was not long before he came."],
+ ["Please tell me your new address, also your telephone number.","Please tell me your new address, and also your telephone number."],
+ ["I doubt that he will come.","I doubt if (or whether) he will come."],
+ ["I have no doubt if he will come.","I have no doubt that he will come."],
+ ["Supposing if he comes here, what will he do?","Suppose he comes here, what will he do?"],
+ ["You have to choose between Ram or Shyam.","You have to choose between Ram and Shyam."],
+ ["I shall either say this to him or his friend.","I shall say this either to him or to his friend."],
+ ["Madras is as big, if not bigger than, Bangalore.","Madras is as big as, if not bigger than, Bangalore."],
+ ["There was no other way open but to go.","There was no other way open than to go."],
+ ["He is more polite, but not so intelligent as his brother.","He is more polite than, but not so intelligent as, his brother."],
+ ["He is not so wise what he thinks.","He is not so wise as he thinks."],
+ ["He is not so strong like you.","He is not so strong as you."],
+ ["Meet me between three or five.","Meet me between three and five."],
+ ["He not only met me but also my brother.","He met not only me but also my brother."],
+ ["Although he came, but I did not see him.","Although he came, I did not see him."],
+ ["It is necessary that you go there.","It is necessary that you should go there."],
+ ["He was afraid lest he would not pass.","He was afraid lest he should fail."]
+]},
+{id:"incongruous", num:"516", en:"Incongruous Construction", hi:"असंगत वाक्य-रचना", bn:"অসঙ্গত বাক্য গঠন",
+ desc:{en:"One word is forced to serve two different constructions at once (e.g. one preposition for two different verbs).",
+       hi:"एक ही शब्द को एक साथ दो अलग-अलग वाक्य-रचनाओं की सेवा करने के लिए मजबूर किया जाता है (जैसे दो अलग क्रियाओं के लिए एक ही पूर्वसर्ग)।",
+       bn:"একটি শব্দকে একসঙ্গে দুটি ভিন্ন বাক্য গঠনে ব্যবহার করতে বাধ্য করা হয় (যেমন দুটি ভিন্ন ক্রিয়ার জন্য একটিই preposition)।"},
+ items:[
+ ["My watch is inferior and less costly than yours.","My watch is inferior to, and less costly than, yours."],
+ ["He was appointed and dismissed from the post on the same day.","He was appointed to, and dismissed from, the post on the same day."],
+ ["He was offered the post and accepted it.","He was offered the post, and he accepted it."],
+ ["I have not seen him act or sing.","I have not seen him act or heard him sing."],
+ ["Many were delighted and everyone contented.","Many were delighted and everyone was contented."],
+ ["He came and returned to Japan.","He came from and returned to Japan."],
+ ["He is more polite but not so kind-hearted as his brother.","He is more polite than, but not so kind-hearted as, his brother."]
+]},
+{id:"confusion", num:"517", en:"Confusion of Constructions", hi:"वाक्य-रचनाओं का मिश्रण", bn:"বাক্য গঠনের মিশ্রণ",
+ desc:{en:"Two correct idioms are blended into a third, incorrect hybrid.",
+       hi:"दो सही मुहावरों को मिलाकर एक तीसरा, गलत मिश्रित रूप बना दिया जाता है।",
+       bn:"দুটি সঠিক বাগ্‌ধারা মিশিয়ে একটি তৃতীয়, ভুল সংকর তৈরি হয়।"},
+ items:[
+ ["The committee is comprised of five members. (mix)","The committee consists of five members / The committee comprises five members."],
+ ["His example inspired us with courage. (mix)","His example infused (instilled) courage into us / His example infused us with courage."],
+ ["He wrote to me a letter. (mix)","He wrote to me / He wrote me a letter."],
+ ["This is a news too good to be true. (mix)","This news is too good to be true / This is too good news to be true."],
+ ["He is strong like me. (mix)","He is as strong as I am / He is strong like I am (colloquial)."],
+ ["He was equal to the occasion. (mix)","He rose to the occasion / He rose equal to the occasion."],
+ ["Men came there by hundreds. (mix)","Men came there by the hundred / Men came there by the hundreds."],
+ ["He did it on his own account. (mix)","He did it of his own accord / He did it on his own account."],
+ ["The trouble is due to his rudeness. (mix)","The cause of the trouble is his rudeness / The trouble is due to his rudeness."],
+ ["There is no alternative but termination. (mix)","There is no other alternative than termination / There is no alternative but termination."],
+ ["It is my pleasure to do it. (mix)","I have the pleasure of doing it / It is my pleasure to do it."],
+ ["A comparative few men were present. (mix)","Comparatively few men were present / A comparatively few men were present."],
+ ["I have an interest in doing it. (mix)","I have a motive in doing it / I have a motive for doing it."],
+ ["He refuses to do the work. (mix)","He objects to doing the work."],
+ ["They will tend our needs. (mix)","They will attend to our needs / They will tend to our needs."],
+ ["He is a man who I know is honest. (mix)","He is a man whom I know to be honest."]
+]},
+{id:"repetition", num:"518", en:"Repetition of the Same Idea (Tautology)", hi:"एक ही भाव की पुनरावृत्ति (Tautology)", bn:"একই ভাবের পুনরাবৃত্তি (Tautology)",
+ desc:{en:"Two words or phrases meaning the same thing are used together — one of them must be dropped.",
+       hi:"एक ही अर्थ वाले दो शब्द/वाक्यांश एक साथ प्रयोग होते हैं — इनमें से एक को हटाना चाहिए।",
+       bn:"একই অর্থবোধক দুটি শব্দ/বাক্যাংশ একসঙ্গে ব্যবহৃত হয় — এর একটি বাদ দিতে হবে।"},
+ items:[
+ ["This is equally as good as that.","This is as good as that / These two are equally good."],
+ ["He tried in vain, but he could not do it.","He tried, but he could not do it / He tried in vain to do it."],
+ ["He went there walking on foot.","He went there on foot."],
+ ["That is the place from whence he came.","That is the place whence he came."],
+ ["That is the cause why I don't go there.","That is the reason why I don't go there."],
+ ["I have come to a final conclusion.","I have come to a conclusion / I have come to a final decision."],
+ ["I am in entire charge of the whole work.","I am in entire charge of the work / I am in charge of the whole work."],
+ ["He is a universal favourite of all.","He is a universal favourite / He is a favourite of all."],
+ ["He has the entire monopoly of the trade.","He has a monopoly of the trade."],
+ ["He returned back to his village.","He returned (came back) to his village."],
+ ["It is quite all right.","It is quite right / It is all right."],
+ ["The activities of the club were limited only to games and sports.","The activities of the club were limited to games and sports."],
+ ["He is comparatively better today.","He is comparatively well today / He is better today."],
+ ["The licence was renewed again.","The licence was renewed."],
+ ["Your dress is the same like mine.","Your dress is like mine / Your dress is the same as mine."]
+]},
+{id:"malaprop", num:"519", en:"Malapropism (word confusion)", hi:"शब्द-भ्रम (Malapropism)", bn:"শব্দ বিভ্রাট (Malapropism)",
+ desc:{en:"A similar-sounding but wrong word is used in place of the intended one.",
+       hi:"इच्छित शब्द के स्थान पर उससे मिलता-जुलता ध्वनि वाला परंतु गलत शब्द प्रयोग होता है।",
+       bn:"উদ্দিষ্ট শব্দের বদলে তার কাছাকাছি ধ্বনির কিন্তু ভুল শব্দ ব্যবহৃত হয়।"},
+ items:[
+ ["It has only a vocal application.","It has only a local application."],
+ ["I support your polity.","I support your policy (or politics)."],
+ ["He is a man of unexceptional character.","He is a man of unexceptionable character."],
+ ["He writes in a verbal style.","He writes in a verbose style."],
+ ["He portends ignorance.","He pretends ignorance."],
+ ["He is respectively connected.","He is respectably connected."]
+]},
+{id:"order", num:"520", en:"Order of Words", hi:"शब्दों का क्रम", bn:"শব্দের ক্রম",
+ desc:{en:"Correlatives (not only/but also, both/and, either/or) and modifiers must sit right before the word they govern.",
+       hi:"Correlatives (not only/but also, both/and, either/or) और modifiers को उस शब्द के ठीक पहले रखना चाहिए जिसे वे नियंत्रित करते हैं।",
+       bn:"Correlative শব্দজোড় (not only/but also, both/and, either/or) ও modifier যে শব্দ নিয়ন্ত্রণ করে তার ঠিক আগে বসাতে হবে।"},
+ items:[
+ ["He is not strong in English but in Mathematics.","He is strong, not in English, but in Mathematics."],
+ ["He not only helped me but also my brother.","He helped not only me but also my brother."],
+ ["I not only found him alive, but also cheerful.","I found him not only alive but also cheerful."],
+ ["Some countries have no sea port, such as Nepal.","Some countries, such as Nepal, have no sea port."],
+ ["I did it both for you and him.","I did it for both you and him."],
+ ["You neither helped me nor him.","You helped neither me nor him."],
+ ["Either he did not know or lied.","He either did not know or lied."],
+ ["Either this is true or, false.","This is either true or false."],
+ ["The climate of India is hotter than England.","The climate of India is hotter than that of England."],
+ ["I exactly do not know.","I do not know exactly."],
+ ["I want to go home back.","I want to go back home."],
+ ["I was rather helped by him than his brother.","I was helped rather by him than by his brother."],
+ ["This should only be used by you.","This should be used only by you."],
+ ["It is in the last but one page.","It is in the last page but one."],
+ ["He enquired about your state of health.","He enquired about the state of your health."],
+ ["I saw a dead cow walking across the field.","Walking across the field, I saw a dead cow."],
+ ["He shot himself after reaching home with a gun.","He shot himself with a gun after reaching home."],
+ ["Not only he was a thief, but he was also a murderer.","Not only was he a thief, but he was also a murderer."],
+ ["Neither it is good, nor it is bad.","Neither is it good, nor is it bad / It is neither good nor bad."],
+ ["He both offended him and his brother.","He offended both him and his brother."],
+ ["Exercise is good both for body and mind.","Exercise is good for both body and mind."]
+]},
+{id:"idioms", num:"521", en:"Idioms & Phrases", hi:"मुहावरे और वाक्यांश", bn:"বাগ্‌ধারা ও প্রবাদ",
+ desc:{en:"Fixed idiomatic collocations — the exact partner-word cannot be swapped even for a near-synonym.",
+       hi:"निश्चित मुहावरेदार शब्द-युग्म — यहाँ ठीक जोड़ीदार शब्द को निकट-पर्यायवाची से भी नहीं बदला जा सकता।",
+       bn:"নির্দিষ্ট বাগ্‌ধারাগত শব্দজোড় — এখানে সঠিক সঙ্গী-শব্দটি কাছাকাছি প্রতিশব্দ দিয়েও বদলানো যায় না।"},
+ items:[
+ ["Washed in tears.","Bathed in tears."],
+ ["His fate shook in the balance.","His fate trembled in the balance."],
+ ["He pelted stones at the frogs.","He pelted the frogs with stones."],
+ ["From the frying pan to the fire.","Out of the frying pan into the fire."],
+ ["He left the town with bag and baggage.","He left the town bag and baggage."],
+ ["To lie fully stretched.","To lie stretched at full length."],
+ ["To bring to the bay.","To bring to bay."],
+ ["I care not a straw for him.","I do not care a straw for him."],
+ ["I shook his hand.","I shook him by the hand / I shook hands with him."],
+ ["Put to prison.","Put in prison / Sent to prison."],
+ ["Cutting jokes.","Cracking jokes."],
+ ["To cut one's nose to spite one's face.","To cut off one's nose to spite one's face."],
+ ["He is good in health.","He is in good health."],
+ ["To turn over a new page.","To turn over a new leaf."],
+ ["He took his heart at this.","He took heart at this."],
+ ["I turned every stone.","I left no stone unturned."],
+ ["Copy this word by word.","Copy this word for word."],
+ ["To kill two birds in one stone.","To kill two birds with one stone."],
+ ["He took his birth in 1780.","He was born in 1780."],
+ ["To give dust into one's eyes.","To throw dust in one's eyes."],
+ ["Starvation stares at my face.","Starvation stares me in the face."],
+ ["Set at freedom.","Set free / at liberty."],
+ ["Don't let this escape your mouth.","Don't let this escape your lips."],
+ ["He drank lemonade at his heart's content.","He drank lemonade to his heart's content."],
+ ["More you think of it the worse it becomes.","The more you think of it the worse it becomes."],
+ ["Figures and facts.","Facts and figures."],
+ ["This excuse will hold no water.","This excuse will not hold water."],
+ ["To be at the door of death.","To be at death's door."],
+ ["Lightning and thunder.","Thunder and lightning."],
+ ["Last but not the least came Amal.","Last but not least came Amal."]
+]},
+{id:"particular", num:"522", en:"Particularisation of Use", hi:"प्रयोग की विशिष्टता", bn:"প্রয়োগের নির্দিষ্টতা",
+ desc:{en:"Two related expressions look interchangeable but idiom reserves one strictly for good contexts and the other for bad.",
+       hi:"दो संबंधित अभिव्यक्तियाँ एक जैसी लगती हैं, परंतु मुहावरा एक को केवल अच्छे और दूसरे को केवल बुरे संदर्भ के लिए सुरक्षित रखता है।",
+       bn:"দুটি সম্পর্কিত অভিব্যক্তি দেখতে বিনিময়যোগ্য মনে হলেও বাগ্‌ধারা একটিকে শুধু ভালো এবং অন্যটিকে শুধু খারাপ প্রসঙ্গের জন্য সংরক্ষিত রাখে।"},
+ items:[
+ ["Fast enemies.","Fast friends."],
+ ["Addicted to a good habit.","Addicted to a bad habit."],
+ ["Devoted to a bad habit.","Devoted to a good habit."],
+ ["I broke the news to him. (said of good news)","'Broke the news' is properly used of bad news."],
+ ["This bodes good.","This bodes ill (or no good)."],
+ ["A bevy of gentlemen.","A bevy of ladies."],
+ ["The child was left in charge of a servant.","The child was left in the charge of a servant."],
+ ["Best friend.","Bosom friend."],
+ ["Drawn fight or combat.","Drawn battle or game."],
+ ["Lofty talk.","Tall talk."],
+ ["Strongly disappointed.","Bitterly disappointed."],
+ ["Condign reward.","Condign punishment."],
+ ["Glaring truth.","Glaring error."],
+ ["Utter or sheer wisdom.","Utter or sheer folly."]
+]},
+{id:"parallel", num:"523", en:"Parallel Construction", hi:"समानांतर वाक्य-रचना (Parallelism)", bn:"সমান্তরাল বাক্য গঠন (Parallelism)",
+ desc:{en:"Items joined by 'and' or a correlative pair must all share the same grammatical form — no mixing infinitives with gerunds, or nouns with clauses.",
+       hi:"'and' या correlative जोड़ी से जुड़े शब्दों का व्याकरणिक रूप एक जैसा होना चाहिए — infinitive को gerund के साथ, या संज्ञा को उपवाक्य के साथ मिलाना गलत है।",
+       bn:"'and' বা correlative জোড়া দ্বারা যুক্ত অংশগুলির ব্যাকরণগত রূপ একই হতে হবে — infinitive-কে gerund-এর সঙ্গে, বা বিশেষ্যকে উপবাক্যের সঙ্গে মেশানো ভুল।"},
+ items:[
+ ["Donald loves eating pizza and to watch TV.","Donald loves eating pizza and watching TV."],
+ ["The film was interesting, exciting, and it was made well.","The film was interesting, exciting, and well made."],
+ ["We went out to play, to enjoy and for relaxing.","We went out to play, to enjoy and to relax."],
+ ["He died unloved, unknown, and without any money.","He died unloved, unknown, and penniless."],
+ ["I have studied Shaw's plays not only for their plots but also because they are witty.","I have studied Shaw's plays not only for their plots but also for their wit."],
+ ["He was a man of great wisdom and whose charm everyone admired.","He was a man who had great wisdom and whose charm everyone admired."],
+ ["The purpose of coming here is to see you and collecting donation.","The purpose of coming here is to see you and to collect donation."],
+ ["He was popular because of his humour, his intelligence, and he could get along with people.","He was popular because of his humour, his intelligence, and his ability to get along with people."]
+]}
+];
+
+/* Flatten into a single quiz-question pool */
+let QUESTIONS = [];
+CATS.forEach(cat=>{
+  cat.items.forEach(pair=>{
+    QUESTIONS.push({ cat: cat.id, catName:{en:cat.en,hi:cat.hi,bn:cat.bn}, wrong: pair[0], right: pair[1] });
+  });
+});
+
+/* ===================================================================
+   APP STATE / DOM refs
+   =================================================================== */
+const app = document.getElementById("app");
+const drawer = document.getElementById("drawer");
+const scrim = document.getElementById("scrim");
+const drawerList = document.getElementById("drawerList");
+const modeNav = document.getElementById("modeNav");
+const langSeg = document.getElementById("langSeg");
+const themeBtn = document.getElementById("themeBtn");
+const menuBtn = document.getElementById("menuBtn");
+const drawerClose = document.getElementById("drawerClose");
+
+const exam = { count:20, secsPer:45, cov:"all" };
+
+function buildChrome(){
+  document.getElementById("brandTitle").textContent = "Common Errors in English";
+  document.getElementById("brandSub").textContent = t(UI.brandSub);
+  document.getElementById("drawerHeading").textContent = t(UI.drawerHeading);
+  document.getElementById("footerCredit").textContent = t(UI.footer);
+  modeNav.innerHTML = `
+    <button data-mode="home">${t(UI.navHome)}</button>
+    <button data-mode="study">${t(UI.navStudy)}</button>
+    <button data-mode="quiz">${t(UI.navQuiz)}</button>
+    <button data-mode="exam">${t(UI.navExam)}</button>
+    <button data-mode="about">${t(UI.navAbout)}</button>`;
+  [...modeNav.querySelectorAll("button")].forEach(b=>{
+    b.setAttribute("aria-selected", b.dataset.mode === state.mode ? "true" : "false");
+    b.onclick = ()=> setMode(b.dataset.mode);
+  });
+  [...langSeg.querySelectorAll("button")].forEach(b=>{
+    b.setAttribute("aria-current", b.dataset.l === state.lang ? "true" : "false");
+  });
+  buildDrawer();
+}
+
+function buildDrawer(){
+  drawerList.innerHTML = "";
+  CATS.forEach(cat=>{
+    const b = document.createElement("button");
+    b.className = "catbtn";
+    b.dataset.cat = cat.id;
+    b.innerHTML = `<span>${esc(cat.num)}. ${esc(t({en:cat.en,hi:cat.hi,bn:cat.bn}))}</span><small>${cat.items.length}</small>`;
+    b.onclick = ()=>{ closeDrawer(); openCategory(cat.id); };
+    drawerList.appendChild(b);
+  });
+}
+
+function openDrawer(){ drawer.classList.add("open"); scrim.classList.add("show"); }
+function closeDrawer(){ drawer.classList.remove("open"); scrim.classList.remove("show"); }
+menuBtn.onclick = openDrawer;
+drawerClose.onclick = closeDrawer;
+scrim.onclick = closeDrawer;
+themeBtn.onclick = ()=>{
+  const root = document.documentElement;
+  root.setAttribute("data-theme", root.getAttribute("data-theme") === "dark" ? "light" : "dark");
+};
+langSeg.querySelectorAll("button").forEach(b=>{
+  b.onclick = ()=>{
+    state.lang = b.dataset.l;
+    buildChrome();
+    render();
+  };
+});
+
+function setMode(mode){
+  state.mode = mode;
+  buildChrome();
+  render();
+  window.scrollTo({top:0, behavior:"instant"});
+}
+function openCategory(id){ state.currentCat = id; setMode("study"); }
+
+function shuffle(arr){
+  const a = arr.slice();
+  for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; }
+  return a;
+}
+function buildOptions(q){
+  const distractorsPool = shuffle(QUESTIONS.filter(x=>x!==q));
+  const opts = [ {text:q.right, correct:true}, {text:q.wrong, correct:false} ];
+  let i=0;
+  while(opts.length<4 && i<distractorsPool.length){
+    const cand = distractorsPool[i].wrong;
+    if(!opts.some(o=>o.text===cand)) opts.push({text:cand, correct:false});
+    i++;
+  }
+  return shuffle(opts);
+}
+
+/* ---------------- HOME ---------------- */
+function renderHome(){
+  app.innerHTML = `
+  <div class="hero">
+    <h1>${t(UI.heroTitle)}</h1>
+    <p>${t(UI.heroSub)}</p>
+    <div class="stats">
+      <div class="stat"><b>${CATS.length}</b><span>${t(UI.statCats)}</span></div>
+      <div class="stat"><b>${QUESTIONS.length}</b><span>${t(UI.statSentences)}</span></div>
+      <div class="stat"><b>3</b><span>${t(UI.statLangs)}</span></div>
+    </div>
+  </div>
+  <div class="catgrid" id="homeGrid"></div>`;
+  const grid = document.getElementById("homeGrid");
+  CATS.forEach(cat=>{
+    const el = document.createElement("button");
+    el.className = "catcard";
+    el.innerHTML = `
+      <div class="num">Art. ${esc(cat.num)}</div>
+      <h4>${esc(t({en:cat.en,hi:cat.hi,bn:cat.bn}))}</h4>
+      <p>${esc(t(cat.desc))}</p>
+      <span class="count">${cat.items.length} ${t(UI.examplesLbl)}</span>`;
+    el.onclick = ()=> openCategory(cat.id);
+    grid.appendChild(el);
+  });
+}
+
+/* ---------------- STUDY ---------------- */
+function renderStudy(){
+  if(!state.currentCat){
+    app.innerHTML = `
+    <div class="hero" style="padding-top:.2rem;">
+      <h1>${t(UI.studyTitle)}</h1><p>${t(UI.studySub)}</p>
+    </div>
+    <div class="catgrid" id="studyGrid"></div>`;
+    const grid = document.getElementById("studyGrid");
+    CATS.forEach(cat=>{
+      const el = document.createElement("button");
+      el.className = "catcard";
+      el.innerHTML = `
+        <div class="num">Art. ${esc(cat.num)}</div>
+        <h4>${esc(t({en:cat.en,hi:cat.hi,bn:cat.bn}))}</h4>
+        <p>${esc(t(cat.desc))}</p>
+        <span class="count">${cat.items.length} ${t(UI.examplesLbl)}</span>`;
+      el.onclick = ()=> openCategory(cat.id);
+      grid.appendChild(el);
+    });
+    return;
+  }
+  const cat = CATS.find(c=>c.id===state.currentCat);
+  let notesHtml = "";
+  if(cat.notes && cat.notes.length){
+    notesHtml = `<div class="notebox"><b>${t(UI.notesLbl)}:</b><ul style="margin:.3rem 0 0 1rem; padding:0;">` +
+      cat.notes.map(n=>`<li>${esc(t(n))}</li>`).join("") + `</ul></div>`;
+  }
+  app.innerHTML = `
+  <div class="backrow"><button id="backBtn">← ${t(UI.backAll)}</button></div>
+  <div class="section-title">Art. ${esc(cat.num)} — ${esc(t({en:cat.en,hi:cat.hi,bn:cat.bn}))}</div>
+  <div class="section-sub">${esc(t(cat.desc))}</div>
+  ${notesHtml}
+  <div class="pairlist">
+    ${cat.items.map(([w,r])=>`
+      <div class="pair">
+        <div class="w"><span class="tag">✕</span><span>${esc(w)}</span></div>
+        <div class="r"><span class="tag">✓</span><span>${esc(r)}</span></div>
+      </div>`).join("")}
+  </div>
+  <div style="margin-top:1.2rem; text-align:center;">
+    <button class="btn" id="quizThisCat">${t(UI.quizThis)}</button>
+  </div>`;
+  document.getElementById("backBtn").onclick = ()=>{ state.currentCat=null; renderStudy(); };
+  document.getElementById("quizThisCat").onclick = ()=> startQuiz(cat.id);
+}
+
+/* ---------------- QUIZ ---------------- */
+function startQuiz(catId){
+  const pool = catId ? QUESTIONS.filter(q=>q.cat===catId) : QUESTIONS;
+  state.quiz.queue = shuffle(pool).slice(0, Math.min(pool.length, 200));
+  state.quiz.pos = 0; state.quiz.score = 0; state.quiz.wrongLog = [];
+  state.mode = "quiz";
+  buildChrome();
+  renderQuizQuestion();
+}
+function renderQuiz(){
+  app.innerHTML = `
+  <div class="hero" style="padding-top:.2rem;">
+    <h1>${t(UI.quizTitle)}</h1><p>${t(UI.quizSub)}</p>
+  </div>
+  <div class="setup-grid">
+    <div class="field">
+      <label>${t(UI.categoryLbl)}</label>
+      <select id="quizCatSel">
+        <option value="all">${t(UI.allMixed)}</option>
+        ${CATS.map(c=>`<option value="${c.id}">${c.num}. ${esc(t({en:c.en,hi:c.hi,bn:c.bn}))}</option>`).join("")}
+      </select>
+    </div>
+    <button class="btn" id="startQuizBtn" style="align-self:flex-start;">${t(UI.startPractice)}</button>
+  </div>`;
+  document.getElementById("startQuizBtn").onclick = ()=>{
+    const sel = document.getElementById("quizCatSel").value;
+    startQuiz(sel==="all" ? null : sel);
+  };
+}
+function renderQuizQuestion(){
+  const q = state.quiz.queue[state.quiz.pos];
+  if(!q){ renderQuizDone(); return; }
+  const opts2 = buildOptions(q);
+  app.innerHTML = `
+  <div class="progresswrap"><div class="progressbar" style="width:${(state.quiz.pos/state.quiz.queue.length)*100}%"></div></div>
+  <div class="qcard">
+    <div class="qmeta">
+      <span>${esc(t(q.catName))}</span>
+      <span>${state.quiz.pos+1} / ${state.quiz.queue.length}</span>
+    </div>
+    <div class="qprompt">${t(UI.whichCorrect)}</div>
+    <div class="qoptions" id="qopts">
+      ${opts2.map((o)=>`<button class="qopt" data-correct="${o.correct}">${esc(o.text)}</button>`).join("")}
+    </div>
+    <div class="explain" id="qexplain"></div>
+    <div class="qfoot">
+      <button class="btn ghost" id="skipBtn">${t(UI.skip)}</button>
+      <button class="btn" id="nextBtn" disabled>${t(UI.next)}</button>
+    </div>
+  </div>`;
+  const optButtons = [...document.querySelectorAll(".qopt")];
+  optButtons.forEach(b=>{
+    b.onclick = ()=>{
+      optButtons.forEach(x=>x.disabled=true);
+      const isCorrect = b.dataset.correct === "true";
+      b.classList.add(isCorrect?"correct":"wrong");
+      optButtons.forEach(x=>{ if(x.dataset.correct==="true") x.classList.add("correct"); });
+      if(isCorrect) state.quiz.score++; else state.quiz.wrongLog.push(q);
+      const exp = document.getElementById("qexplain");
+      exp.classList.add("show");
+      exp.innerHTML = `<b>${t(UI.correctForm)}</b> ${esc(q.right)}`;
+      document.getElementById("nextBtn").disabled = false;
+    };
+  });
+  document.getElementById("nextBtn").onclick = ()=>{ state.quiz.pos++; renderQuizQuestion(); };
+  document.getElementById("skipBtn").onclick = ()=>{ state.quiz.pos++; renderQuizQuestion(); };
+}
+function renderQuizDone(){
+  const pct = Math.round((state.quiz.score/Math.max(1,state.quiz.queue.length))*100);
+  app.innerHTML = `
+  <div class="resultbox">
+    <div class="score
